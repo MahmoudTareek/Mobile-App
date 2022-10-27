@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 
 Color maincolor = Color(0xff3e536e);
+Color favoritesColor = Colors.red;
 
 Widget defaultButton({
   double width = double.infinity,
