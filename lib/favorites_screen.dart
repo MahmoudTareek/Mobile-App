@@ -180,7 +180,6 @@ Widget buildFavoriteItem(FavoritesModel model) => Column(
                    icon: CircleAvatar(
                     radius: 15.0,
                     backgroundColor: model.isfavorites? model.favorites : maincolor,
-                    // backgroundColor: Colors.red,
                     child: Icon(
                       Icons.favorite_border,
                       size: 20.0,
