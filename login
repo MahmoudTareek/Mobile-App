@@ -42,7 +42,7 @@ class myapp extends StatelessWidget {
                 ),
               ),
             ),
-SizedBox(height: 20,),
+SizedBox(height: 30,),
 Container(
   child: Text('Forgot password'
   )
