@@ -75,7 +75,7 @@ SizedBox(height:20 ),
                   },
                 )
               ],
-              
+              mainAxisAlignment: MainAxisAlignment.center,
             ),
             
           ),
