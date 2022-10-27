@@ -62,7 +62,20 @@ SizedBox(height:20 ),
                 },
               ))
             ],
-
+              Row(
+              children: <Widget>[
+                const Text('Does not have account?'),
+                TextButton(
+                  child: const Text(
+                    'Sign in',
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  onPressed: () {
+                    //signup screen
+                  },
+                )
+              ],
+              
             ),
             
           ),
