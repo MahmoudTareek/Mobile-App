@@ -1,11 +1,11 @@
-import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
+// import 'package:flutter/material.dart';
+// import 'package:google_maps_flutter/google_maps_flutter.dart';
 
-class User {
-  List<String> list_place = ["TBS The Bakery Shop","Chillout Gas Station","Pardo Musuem","Scarpetta Restaurant"];
-  List<double> list_rating = [4.8, 4.1, 4.3, 4.9];
+// class User {
+//   List<String> list_place = ["TBS The Bakery Shop","Chillout Gas Station","Pardo Musuem","Scarpetta Restaurant"];
+//   List<double> list_rating = [4.8, 4.1, 4.3, 4.9];
 
 
-  User();
+//   User();
 
-}
+// }

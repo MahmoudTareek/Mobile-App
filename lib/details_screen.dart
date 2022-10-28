@@ -81,11 +81,11 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   Stack(
                     children: [
                       Container(
-                        height: 300,
+                        height: 270,
                         width: 380,
                         decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                        ),
+                            borderRadius: BorderRadius.circular(20),
+                            color: Color(0xffe3e2e9)),
                       ),
                       Column(
                         children: [
@@ -101,9 +101,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             ),
                             decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              // color: Colors.pink,
+                              //color: Colors.pink,
                               image: const DecorationImage(
-                                image: AssetImage('assets/images/moez.jpg'),
+                                image: AssetImage('assets/images/Moez.jpg'),
                                 fit: BoxFit.cover,
                               ),
                             ),
