@@ -1,20 +1,7 @@
 import 'package:flutter/material.dart';
 import 'components.dart';
+import 'on_boarding_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
-
-
-class BoardingModel
-{
-  late final String image;
-  late final String title;
-  late final String body;
-
-  BoardingModel({
-  required this.image,
-  required this.title,
-  required this.body,
-  });
-}
 
 class OnBoardingScreen extends StatefulWidget
 {
@@ -22,28 +9,6 @@ class OnBoardingScreen extends StatefulWidget
   @override
   _OnBoardingScreenState createState() => _OnBoardingScreenState();
 }
-
-class _OnBoardingScreenState extends State<OnBoardingScreen> {
-  var boardController = PageController();
-
-  List<BoardingModel> boarding =
-  [
-    BoardingModel(
-        image: 'assets/images/logo.png',
-        title: 'On Board 1 Title',
-        body:'On Board 1 Body',
-        ),
-    BoardingModel(
-        image: 'assets/images/logo.png',
-        title: 'On Board 2 Title',
-        body:'On Board 2 Body',
-        ),
-    BoardingModel(
-        image: 'assets/images/logo.png',
-        title: 'On Board 3 Title',
-        body:'On Board 3 Body',
-        ),
-  ];
 
   bool isLast = false;
   
