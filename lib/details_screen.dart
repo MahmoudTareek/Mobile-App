@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'details_data.dart';
+import '../details_data.dart';
 // import 'package:color/color.dart';
 // import 'package:favorite_button/favorite_button.dart';
 
