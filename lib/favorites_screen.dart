@@ -19,7 +19,7 @@ class _FavoritesScreenState extends State<FavoritesScreen>
         backgroundColor: maincolor,
       ),
       body: ListView.separated(
-          itemBuilder: (context, index) => buildFavoriteItem(Favorites[index]),
+          itemBuilder: (context, index) => buildFavoriteItem(favorites[index]),
           separatorBuilder: (context, index) => Padding(
             padding: const EdgeInsetsDirectional.only(
               start: 20.0,
@@ -31,7 +31,7 @@ class _FavoritesScreenState extends State<FavoritesScreen>
               color: Colors.grey[300],
             ),
           ),
-          itemCount: Favorites.length,
+          itemCount: favorites.length,
       ),
   );
   }
