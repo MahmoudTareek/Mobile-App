@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/components.dart';
-import 'package:project/favorites_model.dart';
+
+import 'favorites_model.dart';
 
 class FavoritesScreen extends StatefulWidget
 

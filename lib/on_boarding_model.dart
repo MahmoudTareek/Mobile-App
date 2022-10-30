@@ -14,18 +14,18 @@ class BoardingModel
 List<BoardingModel> boarding =
   [
     BoardingModel(
-        image: 'assets/images/logo.png',
-        title: 'On Board 1 Title',
+        image: 'assets/images/icon2.png',
+        title: 'Nearby locations',
         body:'On Board 1 Body',
         ),
     BoardingModel(
-        image: 'assets/images/logo.png',
-        title: 'On Board 2 Title',
+        image: 'assets/images/icon1.png',
+        title: 'Planned Tours',
         body:'On Board 2 Body',
         ),
     BoardingModel(
-        image: 'assets/images/logo.png',
-        title: 'On Board 3 Title',
+        image: 'assets/images/icon3.png',
+        title: 'location reviews',
         body:'On Board 3 Body',
         ),
   ];
