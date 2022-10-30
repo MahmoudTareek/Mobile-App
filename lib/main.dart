@@ -1,17 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:project/login.dart';
-// import 'package:project/on_boarding_screen.dart';
+import 'package:project/on_boarding_screen.dart';
 // import 'favorites_screen.dart';
 // import 'details_screen.dart';
-// import 'map.dart';
+import 'map.dart';
+import 'view_profile.dart';
 
 void main() {
   runApp(
     MaterialApp(
       // home: FavoritesScreen(),
-      initialRoute: 'DetailsScreen',
+      initialRoute: 'OnBoardingScreen',
       routes: {
-        'DetailsScreen': (context) => const LoginScreen(),
+        'OnBoardingScreen': (context) => OnBoardingScreen(),
       },
       debugShowCheckedModeBanner: false,
     ),

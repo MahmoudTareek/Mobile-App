@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:project/signup.dart';
 import 'components.dart';
 import 'on_boarding_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -103,8 +104,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     {
                       if(isLast)
                         {
-                          print("Signup Page");
-                        }
+                          Navigator.push(
+                              context,
+                              MaterialPageRoute(builder: (context) => signup()),
+                          );
+                    }
                       else {
                         boardController.nextPage(
                           duration: Duration(
@@ -139,7 +143,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             image: AssetImage(
               '${model.image}',
               ),
-              width: 70.0,
+              width: 240.0,
           ),
         ),
       ),

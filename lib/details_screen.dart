@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:project/view_profile.dart';
 import '../details_data.dart';
+import 'map.dart';
 
 class DetailsScreen extends StatefulWidget {
   // const DetailsScreen({super.key});
@@ -50,7 +52,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                     ),
                     Container(
                       decoration: const BoxDecoration(),
-                      child: Container(
+                      child: GestureDetector(
+                        onTap:(){
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => ViewProfile()),
+                          );
+                        },
+                      child:Container(
                         height: 40,
                         width: 40,
                         decoration: BoxDecoration(
@@ -61,6 +70,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             fit: BoxFit.cover,
                           ),
                         ),
+                      ),
                       ),
                     ),
                   ],
@@ -100,10 +110,18 @@ class _DetailsScreenState extends State<DetailsScreen> {
                       ),
                       Column(
                         children: [
-                          Container(
+                          GestureDetector(
+                            onTap:(){
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(builder: (context) => MapScreen()),
+                              );
+                            },
+                          child: Container(
                             height: 150,
                             width: 380,
-                            child: Row(
+                            child:
+                            Row(
                               children: [
                                 Padding(
                                   padding: const EdgeInsets.only(
@@ -123,6 +141,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 fit: BoxFit.cover,
                               ),
                             ),
+                          ),
                           ),
                         ],
                       ),

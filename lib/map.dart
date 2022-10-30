@@ -37,7 +37,6 @@ class _MapScreenState extends State<MapScreen> {
           onPressed: () => Navigator.of(context).pop(),
         ),
         backgroundColor: const Color(0xFF394a59),
-        title: const Text("Mobile APP"),
       ),
       body: Stack(
         children: [
