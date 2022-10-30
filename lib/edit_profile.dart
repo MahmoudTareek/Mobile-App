@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+<<<<<<< HEAD
 import 'view_profile_data.dart';
+=======
+import 'package:project/model/view_profile_data.dart';
+>>>>>>> 00c303fe9e23dd8673eb22ebfeca9d5b208f2cce
 import 'custom_clipper.dart';
 
 class EditProfile extends StatefulWidget {
@@ -31,9 +35,13 @@ class _EditProfileState extends State<EditProfile> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     IconButton(
+<<<<<<< HEAD
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
+=======
+                      onPressed: () {},
+>>>>>>> 00c303fe9e23dd8673eb22ebfeca9d5b208f2cce
                       icon: Icon(Icons.arrow_back),
                     ),
                     IconButton(
@@ -243,7 +251,10 @@ class _EditProfileState extends State<EditProfile> {
                 ),
               ),
             ),
+<<<<<<< HEAD
 
+=======
+>>>>>>> 00c303fe9e23dd8673eb22ebfeca9d5b208f2cce
           ],
         ),
       ),
