@@ -1,81 +1,82 @@
 import 'package:flutter/material.dart';
+
 class login extends StatelessWidget {
+  const login({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          backgroundColor: Color(0xffc7c5d3),
+          backgroundColor: const Color(0xffc7c5d3),
+          // ignore: prefer_const_constructors
           title: Center(
-            child: Text('Sign in'),
+            child: const Text('Sign in'),
           ),
         ),
-        backgroundColor: Color(0xfffcebe3),
+        backgroundColor: const Color(0xfffcebe3),
         body: SafeArea(
           child: SingleChildScrollView(
             child: Column(
               children: [
-            SizedBox(height: 50,),
-                        Container(
-                padding: const EdgeInsets.all(10),
-                child: TextField(
-                  // controller: nameController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'User Name',
-                  ),
+                const SizedBox(
+                  height: 50,
                 ),
-              ),
-          
-                        Container(
-                padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
-                child: TextField(
-                  obscureText: true,
-                  // controller: passwordController,
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    labelText: 'Password',
-                  ),
-                ),
-              ),
-          SizedBox(height: 20,),
-          Container(
-            child: Text('Forgot password'
-            )
-            
-          ),
-          SizedBox(height:20 ),
-                        Container(
-                          width: 300,
-                height: 50,
-                // padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0),
-                child: ElevatedButton(
-                  child: const Text('Login'),
-                  style: ElevatedButton.styleFrom(primary:Color(0xffc29592) ),
-                  onPressed: () {
-                    // print(nameController.text);
-                    // print(passwordController.text);
-                  },
-                )),
-              
-                Row(
-                children: <Widget>[
-                  const Text('Does not have account?'),
-                  TextButton(
-                    child: const Text(
-                      'Sign Up',
-                      style: TextStyle(fontSize: 20 ,
-                      color: Color(0xffc29592)
-                       ),
-                      
+                Container(
+                  padding: const EdgeInsets.all(10),
+                  child: const TextField(
+                    // controller: nameController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'User Name',
                     ),
-                    onPressed: () {
-                      //signup screen
-                    },
-                  )
-                ],
-                mainAxisAlignment: MainAxisAlignment.center,
-              ),
+                  ),
+                ),
+                Container(
+                  padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
+                  child: const TextField(
+                    obscureText: true,
+                    // controller: passwordController,
+                    decoration: InputDecoration(
+                      border: OutlineInputBorder(),
+                      labelText: 'Password',
+                    ),
+                  ),
+                ),
+                const SizedBox(
+                  height: 20,
+                ),
+                const Text('Forgot password'),
+                const SizedBox(height: 20),
+                Container(
+                    width: 300,
+                    height: 50,
+                    // padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0),
+                    child: ElevatedButton(
+                      style:
+                          ElevatedButton.styleFrom(primary: Color(0xffc29592)),
+                      onPressed: () {
+                        // print(nameController.text);
+                        // print(passwordController.text);
+                      },
+                      child: const Text('Login'),
+                    )),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text('Does not have account?'),
+                    TextButton(
+                      child: const Text(
+                        'Sign Up',
+                        style:
+                            TextStyle(fontSize: 20, color: Color(0xffc29592)),
+                      ),
+                      onPressed: () {
+                        //signup screen
+                      },
+                    )
+                  ],
+                ),
               ],
             ),
           ),
