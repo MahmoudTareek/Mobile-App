@@ -1,18 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:project/login.dart';
-import 'package:project/on_boarding_screen.dart';
-import 'favorites_screen.dart';
-import 'details_screen.dart';
-import 'map.dart';
-import 'view_profile.dart';
+import 'package:project/details_screen.dart';
+// import 'package:project/login.dart';
+// import 'package:project/on_boarding_screen.dart';
+// import 'favorites_screen.dart';
+// import 'map.dart';
+// import 'view_profile.dart';
 
 void main() {
   runApp(
     MaterialApp(
       // home: FavoritesScreen(),
-      initialRoute: 'OnBoardingScreen',
+      // initialRoute: 'OnBoardingScreen',
+      // routes: {
+      //   'OnBoardingScreen': (context) => OnBoardingScreen(),
+      // },
+
+      initialRoute: 'DetailsScreen',
       routes: {
-        'OnBoardingScreen': (context) => OnBoardingScreen(),
+        'DetailsScreen': (context) => const DetailsScreen(),
       },
       debugShowCheckedModeBanner: false,
     ),
