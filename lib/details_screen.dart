@@ -114,7 +114,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         width: 380,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: const Color(0xfff4f3f6)),
+                            color: detailsBackground),
                       ),
                       Column(
                         children: [
@@ -272,7 +272,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           width: 373,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: const Color(0xfff4f3f6)),
+                              color: detailsBackground),
                         ),
                         const Padding(
                           padding: EdgeInsets.only(left: 10, top: 18),
@@ -351,7 +351,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           image: AssetImage(data.imageUrl[index]),
                           fit: BoxFit.cover,
                         ),
-                        color: const Color(0xfff4f3f6),
+                        color: detailsBackground,
                       ),
                     );
                   },
