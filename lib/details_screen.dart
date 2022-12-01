@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:project/view_profile.dart';
+import 'package:project/components.dart';
 import '../details_data.dart';
 import 'map.dart';
 
@@ -21,6 +22,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: maincolor,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
