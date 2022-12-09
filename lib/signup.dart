@@ -25,7 +25,14 @@ class signup extends StatelessWidget{
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       labelText: 'User Name',
+                     
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter username';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                       
@@ -38,6 +45,12 @@ class signup extends StatelessWidget{
                       border: OutlineInputBorder(),
                       labelText: 'Password',
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter username';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                       SizedBox(height: 20,),
@@ -50,6 +63,12 @@ class signup extends StatelessWidget{
                       border: OutlineInputBorder(),
                       labelText: 'Confirm Password',
                     ),
+                    validator: (value) {
+                      if (value == null || value.isEmpty) {
+                        return 'Please enter username';
+                      }
+                      return null;
+                    },
                   ),
                 ),
                 SizedBox(height: 20,),
