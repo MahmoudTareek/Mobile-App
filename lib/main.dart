@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:project/details_screen.dart';
+import 'package:project/on_boarding_screen.dart';
+
 // import 'package:project/login.dart';
 // import 'package:project/on_boarding_screen.dart';
 // import 'favorites_screen.dart';
@@ -15,9 +17,9 @@ void main() {
       //   'OnBoardingScreen': (context) => OnBoardingScreen(),
       // },
 
-      initialRoute: 'DetailsScreen',
+      initialRoute: 'onBoardingScreen',
       routes: {
-        'DetailsScreen': (context) => const DetailsScreen(),
+        'onBoardingScreen': (context) => OnBoardingScreen(),
       },
       debugShowCheckedModeBanner: false,
     ),
