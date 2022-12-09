@@ -31,7 +31,12 @@ class login extends StatelessWidget {
                         border: OutlineInputBorder(),
                         labelText: 'User Name',
                       ),
-                    
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter username';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   Container(
@@ -43,6 +48,12 @@ class login extends StatelessWidget {
                         border: OutlineInputBorder(),
                         labelText: 'Password',
                       ),
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return 'Please enter password';
+                        }
+                        return null;
+                      },
                     ),
                   ),
                   const SizedBox(
