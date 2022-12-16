@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'details_screen.dart';
+import 'components.dart';
 
 class PlanScreen extends StatefulWidget {
   @override
@@ -10,6 +11,8 @@ class PlanScreen extends StatefulWidget {
 }
 
 class _PlanScreenState extends State<PlanScreen> {
+
+
   @override
   Widget build(BuildContext context) {
     return SafeArea(
@@ -19,7 +22,7 @@ class _PlanScreenState extends State<PlanScreen> {
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () => Navigator.of(context).pop(),
           ),
-          backgroundColor: const Color(0xFF394a59),
+          backgroundColor: maincolor,
           title: const Text("Go Tour"),
         ),
         body: Padding(
