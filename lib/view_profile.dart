@@ -4,9 +4,10 @@ import 'edit_profile.dart';
 import 'favorites_screen.dart';
 import 'view_profile_data.dart';
 import 'custom_clipper.dart';
+import 'package:project/components.dart';
 
 class ViewProfile extends StatefulWidget {
-  // const ViewProfile({super.key});
+  const ViewProfile({super.key});
 
   @override
   // ignore: library_private_types_in_public_api
@@ -30,7 +31,7 @@ class _ViewProfileState extends State<ViewProfile> {
                 clipper: MyCustomClipper(),
                 child: Container(
                   height: 250,
-                  color: const Color(0xfff4f3f6),
+                  color: detailsBackground,
                 ),
               ),
               Row(
@@ -97,7 +98,7 @@ class _ViewProfileState extends State<ViewProfile> {
                     width: 320,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: const Color(0xfff4f3f6)),
+                        color: detailsBackground),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20, top: 7),
                       child: Text(
@@ -133,7 +134,7 @@ class _ViewProfileState extends State<ViewProfile> {
                     width: 320,
                     decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(20),
-                        color: const Color(0xfff4f3f6)),
+                        color: detailsBackground),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20, top: 7),
                       child: Text(
@@ -156,17 +157,18 @@ class _ViewProfileState extends State<ViewProfile> {
                 children: [
                   ElevatedButton(
                     onPressed: () => {
-                    Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => FavoritesScreen()),
-                    ),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => FavoritesScreen()),
+                      ),
                     },
                     // ignore: sort_child_properties_last
                     child: const Text("Go to Favorites",
                         style: TextStyle(color: Colors.black)),
                     style: ElevatedButton.styleFrom(
                       // ignore: deprecated_member_use
-                      primary: const Color(0xfff4f3f6),
+                      primary: detailsBackground,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                       ),
@@ -185,17 +187,18 @@ class _ViewProfileState extends State<ViewProfile> {
                 children: [
                   ElevatedButton(
                     onPressed: () => {
-                    Navigator.push(
-                    context,
-                    MaterialPageRoute(builder: (context) => EditProfile()),
-                    ),
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => const EditProfile()),
+                      ),
                     },
                     // ignore: sort_child_properties_last
                     child: const Text("Change Password",
                         style: TextStyle(color: Colors.black)),
                     style: ElevatedButton.styleFrom(
                       // ignore: deprecated_member_use
-                      primary: const Color(0xfff4f3f6),
+                      primary: detailsBackground,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                       ),
@@ -205,7 +208,6 @@ class _ViewProfileState extends State<ViewProfile> {
               ),
             ),
           ),
-
           Padding(
             padding: const EdgeInsets.only(top: 7),
             child: Padding(
@@ -225,7 +227,7 @@ class _ViewProfileState extends State<ViewProfile> {
                         style: TextStyle(color: Colors.black)),
                     style: ElevatedButton.styleFrom(
                       // ignore: deprecated_member_use
-                      primary: const Color(0xfff4f3f6),
+                      primary: detailsBackground,
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(18.0),
                       ),

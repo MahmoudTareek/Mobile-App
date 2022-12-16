@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:project/view_profile.dart';
+import 'package:project/components.dart';
 import '../details_data.dart';
 import 'map.dart';
 
 class DetailsScreen extends StatefulWidget {
   // const DetailsScreen({super.key});
-  static const IconData star_half =
+  static const IconData starHalf =
       IconData(0xe5fc, fontFamily: 'MaterialIcons', matchTextDirection: true);
 
+  const DetailsScreen({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _DetailsScreenState createState() => _DetailsScreenState();
 }
 
@@ -18,6 +22,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: maincolor,
+      ),
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.all(10.0),
@@ -34,43 +41,44 @@ class _DetailsScreenState extends State<DetailsScreen> {
                   mainAxisSize: MainAxisSize.max,
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Icon(
+                    const Icon(
                       Icons.menu,
                       size: 25,
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(left: 30),
-                      child: const Text(
+                    const Padding(
+                      padding: EdgeInsets.only(left: 30),
+                      child: Text(
                         'Search',
-                        style: const TextStyle(
-                            fontSize: 18, fontFamily: 'Roboto Mono'),
+                        style:
+                            TextStyle(fontSize: 18, fontFamily: 'Roboto Mono'),
                       ),
                     ),
-                    Padding(
-                      padding: const EdgeInsets.only(right: 170),
-                      child: const Icon(Icons.search, size: 20),
+                    const Padding(
+                      padding: EdgeInsets.only(right: 170),
+                      child: Icon(Icons.search, size: 20),
                     ),
                     Container(
                       decoration: const BoxDecoration(),
                       child: GestureDetector(
-                        onTap:(){
+                        onTap: () {
                           Navigator.push(
                             context,
-                            MaterialPageRoute(builder: (context) => ViewProfile()),
+                            MaterialPageRoute(
+                                builder: (context) => ViewProfile()),
                           );
                         },
-                      child:Container(
-                        height: 40,
-                        width: 40,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(50),
-                          image: const DecorationImage(
-                            image: AssetImage(
-                                'assets/images/gettyimages-1191607545-612x612.jpg'),
-                            fit: BoxFit.cover,
+                        child: Container(
+                          height: 40,
+                          width: 40,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            image: const DecorationImage(
+                              image: AssetImage(
+                                  'assets/images/gettyimages-1191607545-612x612.jpg'),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
-                      ),
                       ),
                     ),
                   ],
@@ -106,42 +114,44 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         width: 380,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(20),
-                            color: Color(0xfff4f3f6)),
+                            color: detailsBackground),
                       ),
                       Column(
                         children: [
                           GestureDetector(
-                            onTap:(){
+                            onTap: () {
                               Navigator.push(
                                 context,
-                                MaterialPageRoute(builder: (context) => MapScreen()),
+                                MaterialPageRoute(
+                                    builder: (context) => const MapScreen()),
                               );
                             },
-                          child: Container(
-                            height: 150,
-                            width: 380,
-                            child:
-                            Row(
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.only(
-                                      left: 10, bottom: 150, top: 10),
-                                  child: Icon(
-                                    Icons.favorite,
-                                    color: Colors.white,
-                                    size: 24.0,
+                            child: Container(
+                              height: 150,
+                              width: 380,
+                              // ignore: sort_child_properties_last
+                              child: Row(
+                                // ignore: prefer_const_literals_to_create_immutables
+                                children: [
+                                  const Padding(
+                                    padding: EdgeInsets.only(
+                                        left: 10, bottom: 150, top: 10),
+                                    child: Icon(
+                                      Icons.favorite,
+                                      color: Colors.white,
+                                      size: 24.0,
+                                    ),
                                   ),
+                                ],
+                              ),
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(20),
+                                image: const DecorationImage(
+                                  image: AssetImage('assets/images/Moez.jpg'),
+                                  fit: BoxFit.cover,
                                 ),
-                              ],
-                            ),
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
-                              image: const DecorationImage(
-                                image: AssetImage('assets/images/Moez.jpg'),
-                                fit: BoxFit.cover,
                               ),
                             ),
-                          ),
                           ),
                         ],
                       ),
@@ -156,10 +166,10 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               padding: const EdgeInsets.only(bottom: 8),
                               child: Row(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 4),
-                                    child: const Icon(
-                                      DetailsScreen.star_half,
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 4),
+                                    child: Icon(
+                                      DetailsScreen.starHalf,
                                       size: 20,
                                     ),
                                   ),
@@ -189,9 +199,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               padding: const EdgeInsets.only(bottom: 8),
                               child: Row(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 3),
-                                    child: const Icon(
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 3),
+                                    child: Icon(
                                       Icons.forward,
                                       size: 20,
                                     ),
@@ -209,9 +219,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               padding: const EdgeInsets.only(bottom: 8),
                               child: Row(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 4),
-                                    child: const Icon(
+                                  const Padding(
+                                    padding: EdgeInsets.only(right: 4),
+                                    child: Icon(
                                       Icons.access_time,
                                       size: 20,
                                     ),
@@ -235,10 +245,12 @@ class _DetailsScreenState extends State<DetailsScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 15, top: 25),
                 child: Row(
+                  // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    Container(
+                    const SizedBox(
                       height: 30,
                       width: 370,
+                      // ignore: prefer_const_constructors
                       child: Text(
                         'Duration',
                         style:
@@ -260,52 +272,46 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           width: 373,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(20),
-                              color: Color(0xfff4f3f6)),
+                              color: detailsBackground),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 10, top: 18),
-                          child: const Icon(
+                        const Padding(
+                          padding: EdgeInsets.only(left: 10, top: 18),
+                          child: Icon(
                             Icons.directions_car,
                             size: 20,
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 40, top: 18),
-                          child: Container(
-                            child: Text(data.timeByCar.toString(),
-                                style: TextStyle(
-                                    fontSize: 18, fontFamily: 'Roboto Mono')),
-                          ),
+                          child: Text(data.timeByCar.toString(),
+                              style: const TextStyle(
+                                  fontSize: 18, fontFamily: 'Roboto Mono')),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 150, top: 18),
-                          child: const Icon(
+                        const Padding(
+                          padding: EdgeInsets.only(left: 150, top: 18),
+                          child: Icon(
                             Icons.directions_bus,
                             size: 20,
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 180, top: 18),
-                          child: Container(
-                            child: Text(data.timeByCar.toString(),
-                                style: TextStyle(
-                                    fontSize: 18, fontFamily: 'Roboto Mono')),
-                          ),
+                          child: Text(data.timeByCar.toString(),
+                              style: const TextStyle(
+                                  fontSize: 18, fontFamily: 'Roboto Mono')),
                         ),
-                        Padding(
-                          padding: const EdgeInsets.only(left: 300, top: 18),
-                          child: const Icon(
+                        const Padding(
+                          padding: EdgeInsets.only(left: 300, top: 18),
+                          child: Icon(
                             Icons.directions_run,
                             size: 20,
                           ),
                         ),
                         Padding(
                           padding: const EdgeInsets.only(left: 330, top: 18),
-                          child: Container(
-                            child: Text(data.timeByCar.toString(),
-                                style: TextStyle(
-                                    fontSize: 18, fontFamily: 'Roboto Mono')),
-                          ),
+                          child: Text(data.timeByCar.toString(),
+                              style: const TextStyle(
+                                  fontSize: 18, fontFamily: 'Roboto Mono')),
                         ),
                       ],
                     ),
@@ -315,8 +321,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
               Padding(
                 padding: const EdgeInsets.only(left: 15, top: 15),
                 child: Row(
+                  // ignore: prefer_const_literals_to_create_immutables
                   children: [
-                    Container(
+                    const SizedBox(
                       height: 30,
                       width: 370,
                       child: Text(
@@ -329,27 +336,25 @@ class _DetailsScreenState extends State<DetailsScreen> {
                 ),
               ),
               Expanded(
-                child: Container(
-                  child: ListView.builder(
-                    scrollDirection: Axis.horizontal,
-                    itemCount: 3,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Container(
-                        margin:
-                            EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                        height: 300,
-                        width: 200,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          image: DecorationImage(
-                            image: AssetImage(data.imageUrl[index]),
-                            fit: BoxFit.cover,
-                          ),
-                          color: Color(0xfff4f3f6),
+                child: ListView.builder(
+                  scrollDirection: Axis.horizontal,
+                  itemCount: 3,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Container(
+                      margin: const EdgeInsets.symmetric(
+                          horizontal: 10, vertical: 20),
+                      height: 300,
+                      width: 200,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        image: DecorationImage(
+                          image: AssetImage(data.imageUrl[index]),
+                          fit: BoxFit.cover,
                         ),
-                      );
-                    },
-                  ),
+                        color: detailsBackground,
+                      ),
+                    );
+                  },
                 ),
               ),
             ],

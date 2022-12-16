@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
-import 'view_profile_data.dart';
-=======
 import 'package:project/model/view_profile_data.dart';
->>>>>>> 00c303fe9e23dd8673eb22ebfeca9d5b208f2cce
 import 'custom_clipper.dart';
+import 'package:project/components.dart';
 
 class EditProfile extends StatefulWidget {
+  const EditProfile({super.key});
+
   @override
+  // ignore: library_private_types_in_public_api
   _EditProfileState createState() => _EditProfileState();
 }
 
@@ -19,7 +19,7 @@ class _EditProfileState extends State<EditProfile> {
     return Scaffold(
       body: SafeArea(
         child: ListView(
-          physics: BouncingScrollPhysics(),
+          physics: const BouncingScrollPhysics(),
           children: [
             Stack(
               children: <Widget>[
@@ -28,25 +28,19 @@ class _EditProfileState extends State<EditProfile> {
                   clipper: MyCustomClipper(),
                   child: Container(
                     height: 250,
-                    color: Color(0xfff4f3f6),
+                    color: detailsBackground,
                   ),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     IconButton(
-<<<<<<< HEAD
-                      onPressed: () {
-                        Navigator.of(context).pop();
-                      },
-=======
                       onPressed: () {},
->>>>>>> 00c303fe9e23dd8673eb22ebfeca9d5b208f2cce
-                      icon: Icon(Icons.arrow_back),
+                      icon: const Icon(Icons.arrow_back),
                     ),
                     IconButton(
                       onPressed: () {},
-                      icon: Icon(Icons.menu),
+                      icon: const Icon(Icons.menu),
                     ),
                   ],
                 ),
@@ -78,7 +72,7 @@ class _EditProfileState extends State<EditProfile> {
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
-              children: [
+              children: const [
                 Text('Edit profile picture'),
               ],
             ),
@@ -87,11 +81,11 @@ class _EditProfileState extends State<EditProfile> {
               padding: const EdgeInsets.all(10),
               child: Stack(
                 children: [
-                  Container(
+                  const SizedBox(
                     height: 40,
                     width: 320,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 5, top: 7),
+                      padding: EdgeInsets.only(left: 5, top: 7),
                       child: Text(
                         'Full name:  ',
                         style:
@@ -106,11 +100,11 @@ class _EditProfileState extends State<EditProfile> {
                       width: 320,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color(0xfff4f3f6)),
+                          color: detailsBackground),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20, top: 7),
                         child: TextFormField(
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18, fontFamily: 'Roboto Mono'),
                         ),
                       ),
@@ -123,11 +117,11 @@ class _EditProfileState extends State<EditProfile> {
               padding: const EdgeInsets.all(10),
               child: Stack(
                 children: [
-                  Container(
+                  const SizedBox(
                     height: 40,
                     width: 320,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 5, top: 7),
+                      padding: EdgeInsets.only(left: 5, top: 7),
                       child: Text(
                         'Email:  ',
                         style:
@@ -142,11 +136,11 @@ class _EditProfileState extends State<EditProfile> {
                       width: 320,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color(0xfff4f3f6)),
+                          color: detailsBackground),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20, top: 7),
                         child: TextFormField(
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18, fontFamily: 'Roboto Mono'),
                         ),
                       ),
@@ -160,11 +154,11 @@ class _EditProfileState extends State<EditProfile> {
               padding: const EdgeInsets.all(10),
               child: Stack(
                 children: [
-                  Container(
+                  const SizedBox(
                     height: 40,
                     width: 320,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 5, top: 7),
+                      padding: EdgeInsets.only(left: 5, top: 7),
                       child: Text(
                         'Password:  ',
                         style:
@@ -179,11 +173,11 @@ class _EditProfileState extends State<EditProfile> {
                       width: 320,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color(0xfff4f3f6)),
+                          color: detailsBackground),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20, top: 7),
                         child: TextFormField(
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18, fontFamily: 'Roboto Mono'),
                         ),
                       ),
@@ -197,11 +191,11 @@ class _EditProfileState extends State<EditProfile> {
               padding: const EdgeInsets.all(10),
               child: Stack(
                 children: [
-                  Container(
+                  const SizedBox(
                     height: 40,
                     width: 320,
                     child: Padding(
-                      padding: const EdgeInsets.only(left: 5, top: 7),
+                      padding: EdgeInsets.only(left: 5, top: 7),
                       child: Text(
                         'Confirm Password:  ',
                         style:
@@ -216,11 +210,11 @@ class _EditProfileState extends State<EditProfile> {
                       width: 320,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
-                          color: Color(0xfff4f3f6)),
+                          color: detailsBackground),
                       child: Padding(
                         padding: const EdgeInsets.only(left: 20, top: 7),
                         child: TextFormField(
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 18, fontFamily: 'Roboto Mono'),
                         ),
                       ),
@@ -238,10 +232,11 @@ class _EditProfileState extends State<EditProfile> {
                   children: [
                     ElevatedButton(
                       onPressed: () => {},
-                      child: Text("Save changes",
+                      // ignore: sort_child_properties_last
+                      child: const Text("Save changes",
                           style: TextStyle(color: Colors.black)),
                       style: ElevatedButton.styleFrom(
-                        primary: Color(0xfff4f3f6),
+                        backgroundColor: detailsBackground,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0),
                         ),
@@ -251,10 +246,6 @@ class _EditProfileState extends State<EditProfile> {
                 ),
               ),
             ),
-<<<<<<< HEAD
-
-=======
->>>>>>> 00c303fe9e23dd8673eb22ebfeca9d5b208f2cce
           ],
         ),
       ),
