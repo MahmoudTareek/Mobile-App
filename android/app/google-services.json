@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "651498546888",
+    "project_id": "go-tour-7d028",
+    "storage_bucket": "go-tour-7d028.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651498546888:android:864a848e6240194a3a27fd",
+        "android_client_info": {
+          "package_name": "com.example.map"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651498546888-ke0o52cojqsj73a1gf3uh03n05bdra00.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvc8W9bkhVk4qPwW4KhGELab7YQHf-bS4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651498546888-ke0o52cojqsj73a1gf3uh03n05bdra00.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
