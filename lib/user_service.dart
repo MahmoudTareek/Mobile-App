@@ -23,16 +23,11 @@ void createUser ({
                             await docUser.set(json);
 }
 
-// readInfo()
-// {
-//   final user = FirebaseAuth.instance.currentUser;
-//   // return FirebaseFirestore.instance.collection('users').snapshots().map(
-//   //   (snapshot) =>
-//   //   snapshot.docs.map((doc) => SignUpModel.fromJson(doc.data())).toList() 
-//   //   );
-//   print(user!.uid.toString());
-//   return FirebaseFirestore.instance.collection('users').doc(user!.uid.toString()).get().then((value) {
-//       usermodel = SignUpModel.fromJson(value.data()!);
-//   // return user!.email;
-// }); 
-// }
+Future<SignUpModel?> readInfo() async {
+  final user = FirebaseAuth.instance.currentUser;
+  final doc = await FirebaseFirestore.instance
+      .collection('users')
+      .doc(user!.uid.toString())
+      .get();
+  return SignUpModel.fromJson(doc.data()!);
+}
