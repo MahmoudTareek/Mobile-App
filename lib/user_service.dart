@@ -4,23 +4,21 @@ import 'model/signup_model.dart';
 
 SignUpModel? usermodel;
 
-void createUser ({
+void createUser({
   required String email,
   required String password,
   required String username,
   required String uid,
 }) async {
-  final docUser = FirebaseFirestore.instance
-                            .collection('users')
-                            .doc();
-                            final model = SignUpModel(
-                              name: username,
-                              email: email,
-                              password: password,
-                              uId: uid,
-                            );
-                            final json = model.toJson();
-                            await docUser.set(json);
+  final docUser = FirebaseFirestore.instance.collection('users');
+  final model = SignUpModel(
+    name: username,
+    email: email,
+    password: password,
+    uId: uid,
+  );
+  final json = model.toJson();
+  await docUser.doc(uid).set(json);
 }
 
 Future<SignUpModel?> readInfo() async {
