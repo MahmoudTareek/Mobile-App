@@ -4,6 +4,7 @@ import 'edit_profile.dart';
 import 'user_service.dart';
 import 'favorites_screen.dart';
 import 'view_profile_data.dart';
+import 'model/signup_model.dart';
 import 'custom_clipper.dart';
 import 'package:project/components.dart';
 
@@ -102,11 +103,23 @@ class _ViewProfileState extends State<ViewProfile> {
                         color: detailsBackground),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20, top: 7),
-                      child: Text(
-                        data.fullName,
-                        style: const TextStyle(
-                            fontSize: 18, fontFamily: 'Roboto Mono'),
+                      child: Padding(
+                      padding: const EdgeInsets.only(left: 20, top: 7),
+                      child: FutureBuilder<SignUpModel?>(
+                        future: readInfo(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return Text(
+                              snapshot.data!.name,
+                              style: const TextStyle(
+                                  fontSize: 18, fontFamily: 'Roboto Mono'),
+                            );
+                          } else {
+                            return const Text('Loading...');
+                          }
+                        },
                       ),
+                    ),
                     ),
                   ),
                 ),
@@ -138,11 +151,23 @@ class _ViewProfileState extends State<ViewProfile> {
                         color: detailsBackground),
                     child: Padding(
                       padding: const EdgeInsets.only(left: 20, top: 7),
-                      child: Text(
-                        data.email,
-                        style: const TextStyle(
-                            fontSize: 18, fontFamily: 'Roboto Mono'),
+                      child: Padding(
+                      padding: const EdgeInsets.only(left: 20, top: 7),
+                      child: FutureBuilder<SignUpModel?>(
+                        future: readInfo(),
+                        builder: (context, snapshot) {
+                          if (snapshot.hasData) {
+                            return Text(
+                              snapshot.data!.email,
+                              style: const TextStyle(
+                                  fontSize: 18, fontFamily: 'Roboto Mono'),
+                            );
+                          } else {
+                            return const Text('Loading...');
+                          }
+                        },
                       ),
+                    ),
                     ),
                   ),
                 ),
