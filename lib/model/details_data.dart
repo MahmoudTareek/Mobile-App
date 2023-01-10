@@ -9,6 +9,7 @@ class DetailsData {
   int timeWalking = 50;
   String open = 'Closes soon';
   int distance = 17;
+  String locationInfo = "";
 
   final imageUrl = [
     'assets/Salah-El-Din-Citadel.jpg',
@@ -21,9 +22,4 @@ class DetailsData {
     'El-Hussien',
     'cairo tower',
   ];
-  // final namLocation = [
-  //   'France',
-  //   'France',
-  //   'France',
-  // ];
 }
