@@ -3,9 +3,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/plan.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+  // create methos singout
+  
+
 
   @override
   // ignore: library_private_types_in_public_api
@@ -16,6 +20,7 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(actions: [IconButton(onPressed: signout, icon: Icon(Icons.logout))],),
       body: SafeArea(
         child: Stack(
           children: [
@@ -148,6 +153,12 @@ class _HomeScreen extends State<HomeScreen> {
         ),
       ),
     );
+  }
+
+  
+
+  void signout() {
+  FirebaseAuth.instance.signOut();
   }
 }
 
