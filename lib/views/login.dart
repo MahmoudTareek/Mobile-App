@@ -1,11 +1,29 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project/views/home_page.dart';
+import 'package:project/views/signup.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
-class Login extends StatelessWidget {
-  const Login({super.key});
+class login extends StatelessWidget {
+  login({super.key});
+
+//controllers for login
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final _formKey = GlobalKey<FormState>();
+  var at = "@";
+  var com = ".com";
+
+//sign in method
+  void signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text, password: passwordController.text);
+  }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: const Color(0xffc7c5d3),
@@ -26,31 +44,40 @@ class Login extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.all(10),
                     child: TextFormField(
-                      // controller: nameController,
-                      decoration: const InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'User Name',
-                      ),
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter username';
+                          return 'Please enter your email';
                         }
-                        return null;
+                        if (value.contains(at) && value.contains(com)) {
+                          return null;
+                        }
+                        return 'You have entered an invalid email address';
                       },
+                      controller: emailController,
+                      // controller: nameController,
+                      decoration: InputDecoration(
+                        border: OutlineInputBorder(),
+                        labelText: 'Email',
+                      ),
                     ),
                   ),
                   Container(
                     padding: const EdgeInsets.fromLTRB(10, 10, 10, 0),
                     child: TextFormField(
+                      controller: passwordController,
                       obscureText: true,
                       // controller: passwordController,
-                      decoration: const InputDecoration(
+                      decoration: InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Password',
                       ),
+
                       validator: (value) {
                         if (value == null || value.isEmpty) {
-                          return 'Please enter password';
+                          return 'Please enter your password';
+                        }
+                        if (value.length < 6) {
+                          return 'Your password must be at least 6 characters';
                         }
                         return null;
                       },
@@ -59,19 +86,31 @@ class Login extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                  const Text('Forgot password'),
+                   Container (child: Text(
+                        'Or continue with Google or Facebook',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                        ),
+                      
+                      ),
+                      ),
+
+                  // const Text('Forgot password'),
                   const SizedBox(height: 20),
-                  SizedBox(
+                  Container(
                       width: 300,
                       height: 50,
                       // padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            backgroundColor: const Color(0xffc29592)),
+                            primary: Color(0xffc29592)),
+
                         onPressed: () {
-                          // print(nameController.text);
-                          // print(passwordController.text);
+                          signIn();
                         },
+
+                    
                         child: const Text('Login'),
                       )),
                   Row(
@@ -85,7 +124,10 @@ class Login extends StatelessWidget {
                               TextStyle(fontSize: 20, color: Color(0xffc29592)),
                         ),
                         onPressed: () {
-                          //signup screen
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(builder: (context) => signup()),
+                          );
                         },
                       )
                     ],
