@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:project/signup.dart';
+import 'package:project/auth.dart';
 import 'components.dart';
 import 'on_boarding_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
@@ -34,6 +34,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   print("Home Page");
                 },
                  child: Text(
+                 
                   "SKIP",
                   style: TextStyle(
                     fontSize: 18.0,
@@ -106,7 +107,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                         {
                           Navigator.push(
                               context,
-                              MaterialPageRoute(builder: (context) => signup()),
+                              MaterialPageRoute(builder: (context) => Auth()),
                           );
                     }
                       else {

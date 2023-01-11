@@ -18,6 +18,7 @@ class signup extends StatelessWidget{
  @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           backgroundColor: Color(0xFF394a59),
@@ -32,6 +33,8 @@ class signup extends StatelessWidget{
               key: _formKey,
               child: Column(
                 children: [
+                 
+
               SizedBox(height: 50,),
                   Container(
                   padding: const EdgeInsets.all(10),
@@ -126,10 +129,20 @@ class signup extends StatelessWidget{
                       }
                     },
                   ),
+
                 ),
                 SizedBox(height: 20,),
                       Container(
+
+                      // insert text here
+                      child: Text(
+                        'Or continue with Google or Facebook',
+                        style: TextStyle(
+                          color: Colors.black,
+                          fontSize: 12,
+                        ),
                       
+                      ),
                       ),
                       SizedBox(height:20 ),
                           Container(
