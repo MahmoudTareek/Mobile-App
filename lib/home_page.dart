@@ -7,8 +7,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
-  // create methos singout
-  
+ 
 
 
   @override
@@ -20,6 +19,7 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+          // signout button 
       appBar: AppBar(actions: [IconButton(onPressed: signout, icon: Icon(Icons.logout))],),
       body: SafeArea(
         child: Stack(
