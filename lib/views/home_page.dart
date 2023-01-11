@@ -3,9 +3,11 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:project/views/plan.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
+ 
 
   @override
   // ignore: library_private_types_in_public_api
@@ -16,6 +18,8 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        // signout button 
+      appBar: AppBar(actions: [IconButton(onPressed: signout, icon: Icon(Icons.logout))],),
       body: SafeArea(
         child: Stack(
           children: [
@@ -149,6 +153,12 @@ class _HomeScreen extends State<HomeScreen> {
       ),
     );
   }
+
+  
+
+  void signout() {
+  FirebaseAuth.instance.signOut();
+  }
 }
 
 class MyImageView extends StatelessWidget {
@@ -156,53 +166,53 @@ class MyImageView extends StatelessWidget {
 
   MyImageView(this.imgPath);
 
+
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return GestureDetector(
-      onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => PlanScreen()),
-        );
-      },
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(builder: (context) => PlanScreen()),
+          );
+    },
       child: Card(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(25.0),
-        ),
-        // elevation: 10.0,
-        margin: const EdgeInsets.all(17),
-        child: Stack(
-          // mainAxisSize: MainAxisSize.min,
-          // crossAxisAlignment: CrossAxisAlignment.start,
-          alignment: AlignmentDirectional.bottomEnd,
-          children: [
-            Container(
-              height: 200.0,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                image: DecorationImage(
-                    image: AssetImage(imgPath), fit: BoxFit.cover),
-              ),
-            ),
-            Container(
-              height: 60,
-              width: MediaQuery.of(context).size.width,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(10.0),
-                color: Color(0xFFEBECF0),
-              ),
-              child: Padding(
-                padding: EdgeInsets.all(10),
-                child: Text(
-                  "description",
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ],
-        ),
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(25.0),
       ),
+      // elevation: 10.0,
+      margin: const EdgeInsets.all(17),
+      child: Stack(
+        // mainAxisSize: MainAxisSize.min,
+        // crossAxisAlignment: CrossAxisAlignment.start,
+        alignment: AlignmentDirectional.bottomEnd,
+        children: [
+          Container(
+            height: 200.0,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              image: DecorationImage(
+                  image: AssetImage(imgPath), fit: BoxFit.cover),
+            ),
+          ),
+          Container(
+            height: 60,
+            width: MediaQuery.of(context).size.width,
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(10.0),
+              color: Color(0xFFEBECF0),
+            ),
+            child: Padding(
+              padding: EdgeInsets.all(10),
+              child: Text("description",
+               textAlign: TextAlign.center,
+               ),
+            ),
+          ),
+        ],
+      ),
+    ),
     );
     //   child: Image.asset(imgPath,),
   }
