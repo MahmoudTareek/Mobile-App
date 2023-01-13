@@ -1,10 +1,14 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
+import 'package:project/services/google_auth.dart';
 import 'home_page.dart';
 import '../services/user_service.dart';
 import '../model/signup_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+
+import'package:project/services/google_auth.dart';
 
 class signup extends StatelessWidget{
   var usernameController = TextEditingController();
@@ -202,15 +206,25 @@ class signup extends StatelessWidget{
             ,
             SizedBox(height:20 ),
                     Container(
+                      
                             width: 300,
                   height: 50,
+                  
                   // padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0),
                   child: ElevatedButton(
+                    
                     child: const Text('Google'),
                     style: ElevatedButton.styleFrom(primary:Color(0x000000) ),
-                    onPressed: () {
+                    
+                    
+                    
+                    onPressed: ()  {
+                  AuthService().signingoogle();
+
+
                     },
                   )
+                  
                   ),
             
                 ],
