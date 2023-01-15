@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
@@ -86,5 +88,21 @@ class MapServices {
     var json = convert.jsonDecode(response.body);
 
     return json;
+  }
+
+  Future<dynamic> fetchSuggestedActivities(String cityName) async {
+    final String url =
+        "https://maps.googleapis.com/maps/api/place/textsearch/json?query=activities+in+$cityName&key=AIzaSyDFoM-XyXDsa3PzoGkY2a94fyW5LLMA6LQ";
+    var response = await http.get(Uri.parse(url));
+
+    if (response.statusCode == 200) {
+      String json_string = response.body;
+    }
+
+    var json = convert.jsonDecode(response.body);
+
+    var results = json['result'] as Map<String, dynamic>;
+
+    return results;
   }
 }

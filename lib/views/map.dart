@@ -10,6 +10,7 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:geolocator/geolocator.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project/services/map_services.dart';
@@ -218,6 +219,8 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     //Providers
     final allSearchResults = ref.watch(placeResultsProvider);
     final searchFlag = ref.watch(searchToggleProvider);
+    late GoogleMapController googleMapController;
+    Set<Marker> markers = {};
 
     return Scaffold(
       body: SingleChildScrollView(
@@ -236,6 +239,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                     initialCameraPosition: _kGooglePlex,
                     onMapCreated: (GoogleMapController controller) {
                       _controller.complete(controller);
+                      googleMapController = controller;
                     },
                     onTap: (point) {
                       tappedPoint = point;
@@ -800,7 +804,26 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                     getDirections = true;
                   });
                 },
-                icon: Icon(Icons.navigation))
+                icon: Icon(Icons.navigation)),
+            IconButton(
+              onPressed: () async {
+                Position position = await _determinePosition();
+
+                googleMapController.animateCamera(
+                    CameraUpdate.newCameraPosition(CameraPosition(
+                        target: LatLng(position.latitude, position.longitude),
+                        zoom: 14)));
+
+                markers.clear();
+
+                markers.add(Marker(
+                    markerId: const MarkerId('currentLocation'),
+                    position: LatLng(position.latitude, position.longitude)));
+
+                setState(() {});
+              },
+              icon: const Icon(Icons.location_history),
+            ),
           ]),
     );
   }
@@ -1157,6 +1180,36 @@ class _MapScreenState extends ConsumerState<MapScreen> {
         ),
       ),
     );
+  }
+
+//get current position of user
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    serviceEnabled = await Geolocator.isLocationServiceEnabled();
+
+    if (!serviceEnabled) {
+      return Future.error('Location services are disabled');
+    }
+
+    permission = await Geolocator.checkPermission();
+
+    if (permission == LocationPermission.denied) {
+      permission = await Geolocator.requestPermission();
+
+      if (permission == LocationPermission.denied) {
+        return Future.error("Location permission denied");
+      }
+    }
+
+    if (permission == LocationPermission.deniedForever) {
+      return Future.error('Location permissions are permanently denied');
+    }
+
+    Position position = await Geolocator.getCurrentPosition();
+
+    return position;
   }
 
   Future<void> goToTappedPlace() async {
