@@ -112,7 +112,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 7, left: 10),
                           child: Text(
-                            widget.detailData['name'].toString(),
+                            widget.detailData['name']
+                                .toString()
+                                .substring(0, 25),
                             style: const TextStyle(
                                 fontSize: 28, fontFamily: 'Roboto Mono'),
                           ),
@@ -153,7 +155,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     // ignore: prefer_const_literals_to_create_immutables
                                     children: [
                                       Padding(
-                                          padding: EdgeInsets.only(
+                                          padding: const EdgeInsets.only(
                                               left: 10, bottom: 150, top: 10),
                                           child: IconButton(
                                               onPressed: () {
@@ -171,6 +173,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                                     ? Icons.star
                                                     : Icons.star_border,
                                                 size: 35,
+                                                color: Colors.red,
                                               ))),
                                     ],
                                   ),
@@ -202,70 +205,35 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     padding: const EdgeInsets.only(bottom: 8),
                                     child: Row(
                                       children: [
-                                        const Padding(
-                                          padding: EdgeInsets.only(right: 4),
-                                          child: Icon(
-                                            Icons.star,
-                                            size: 20,
-                                            color: Color.fromARGB(
-                                                255, 251, 227, 14),
-                                          ),
-                                        ),
-                                        Text(
-                                          widget.detailData['rating']
-                                              .toString(),
-                                          style: const TextStyle(
-                                              fontSize: 16,
-                                              fontFamily: 'Roboto Mono'),
-                                        ),
-                                        // child: RatingStars(
-                                        //   value:
-                                        //       detailData['rating'] != null
-                                        //           ? detailData['rating']
-                                        //           : 0,
-                                        //   starCount: 5,
-                                        //   starSize: 7,
-                                        //   valueLabelColor:
-                                        //       Color(0xff9b9b9b),
-                                        //   valueLabelTextStyle: TextStyle(
-                                        //       color: Colors.white,
-                                        //       fontFamily: 'WorkSans',
-                                        //       fontWeight: FontWeight.w400,
-                                        //       fontStyle: FontStyle.normal,
-                                        //       fontSize: 9.0),
-                                        //   valueLabelRadius: 7,
-                                        //   maxValue: 5,
-                                        //   starSpacing: 2,
-                                        //   maxValueVisibility: false,
-                                        //   valueLabelVisibility: true,
-                                        //   animationDuration:
-                                        //       Duration(milliseconds: 1000),
-                                        //   valueLabelPadding:
-                                        //       EdgeInsets.symmetric(
-                                        //           vertical: 1,
-                                        //           horizontal: 4),
-                                        //   valueLabelMargin:
-                                        //       EdgeInsets.only(right: 4),
-                                        //   starOffColor: Color(0xffe7e8ea),
-                                        //   starColor: Colors.yellow,
-                                        // )
-                                        //------------------------------------------------------------
-                                        //  child: RatingBar.builder() {
-                                        //   initialRating: detailData['rating'] != null
-                                        //         ? detailData['rating']
-                                        //         : 0;
-                                        //     minRating: 1;
-                                        //     direction: Axis.horizontal;
-                                        //     allowHalfRating: true;
-                                        //     itemCount: 5;
-                                        //     itemPadding: EdgeInsets.symmetric(horizontal: 4.0);
-                                        //     itemBuilder: (context, _) => Icon(
-                                        //       Icons.star,
-                                        //       color: Colors.amber,
-                                        //     );
-                                        //     onRatingUpdate: (rating) {
-                                        //       print(rating);
-                                        //     };}
+                                        // const Padding(
+                                        //   padding: EdgeInsets.only(right: 4),
+                                        //
+                                        // ),
+                                        RatingStars(
+                                          value:
+                                              widget.detailData['rating'] ?? 0,
+                                          starCount: 5,
+                                          starSize: 15,
+                                          // ignore: prefer_const_constructors
+                                          valueLabelTextStyle: TextStyle(
+                                              color: Colors.white,
+                                              fontFamily: 'WorkSans',
+                                              fontWeight: FontWeight.w400,
+                                              fontStyle: FontStyle.normal,
+                                              fontSize: 15.0),
+                                          maxValue: 5,
+                                          starSpacing: 2,
+                                          maxValueVisibility: false,
+                                          valueLabelVisibility: true,
+                                          valueLabelPadding:
+                                              const EdgeInsets.symmetric(
+                                                  vertical: 1, horizontal: 4),
+                                          valueLabelMargin:
+                                              const EdgeInsets.only(right: 4),
+                                          starOffColor: const Color(0xffe7e8ea),
+                                          starColor: const Color.fromARGB(
+                                              255, 244, 220, 6),
+                                        )
                                       ],
                                     ),
                                   ),
@@ -281,7 +249,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                           ),
                                         ),
                                         Text(
-                                          data.distance.toString(),
+                                          data.distance,
                                           style: const TextStyle(
                                               fontSize: 16,
                                               fontFamily: 'Roboto Mono'),
@@ -409,6 +377,46 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ),
                       ),
                     ),
+                    SizedBox(
+                      height: 10,
+                      width: MediaQuery.of(context).size.width,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: const [
+                          // ignore: prefer_const_literals_to_create_immutables
+
+                          SizedBox(
+                            height: 30,
+                            width: 340,
+                            // ignore: prefer_const_constructors
+                            child: Text(
+                              'Contact',
+                              style: TextStyle(
+                                  fontSize: 23, fontFamily: 'Roboto Mono'),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Container(
+                      height: 80,
+                      width: 340,
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(20),
+                          color: detailsBackground),
+                      child: Padding(
+                        padding: const EdgeInsets.all(25.0),
+                        child: Text(
+                          widget.detailAddress['formatted_phone_number']
+                              .toString(),
+                          style: const TextStyle(
+                              fontSize: 18, fontFamily: 'Roboto Mono'),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ],
@@ -435,33 +443,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
           //     color: detailsBackground,
           //   ),
           // )
-          // Container(
-          //   height: 200,
-          //   width: 200,
-          //   color: Colors.pink,
-          // ),
-          // const SizedBox(
-          //   height: 200,
-          //   width: 50,
-          // ),
-          // Container(
-          //   height: 200,
-          //   width: 200,
-          //   color: Colors.pink,
-          // ),
-          // const SizedBox(
-          //   height: 200,
-          //   width: 50,
-          // ),
-          // Container(
-          //   height: 200,
-          //   width: 200,
-          //   color: Colors.pink,
-          // ),
-          // const SizedBox(
-          //   height: 200,
-          //   width: 50,
-          // ),
           //],
           //),
           //),
