@@ -14,6 +14,7 @@ import 'package:geolocator/geolocator.dart';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project/services/map_services.dart';
+import 'package:project/views/details_screen.dart';
 import '../model/auto_complete_model.dart';
 import 'search_places.dart';
 // import 'map_services.dart';
@@ -41,6 +42,8 @@ class _MapScreenState extends ConsumerState<MapScreen> {
   bool pressedNear = false;
   bool getDirections = false;
 
+  int count = 0;
+
 //Markers set
   Set<Marker> _markers = Set<Marker>();
   Set<Marker> _markersDupe = Set<Marker>();
@@ -66,6 +69,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
   bool showBlankCard = false;
   bool isReviews = true;
   bool isPhotos = false;
+  bool isDetails = false;
 
   final key = 'AIzaSyDFoM-XyXDsa3PzoGkY2a94fyW5LLMA6LQ';
 
@@ -118,7 +122,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
         CameraPosition(target: point, zoom: 12)));
     setState(() {
       _circles.add(Circle(
-          circleId: CircleId('raj'),
+          circleId: const CircleId('raj'),
           center: point,
           fillColor: Colors.blue.withOpacity(0.1),
           radius: radiusValue,
@@ -135,25 +139,26 @@ class _MapScreenState extends ConsumerState<MapScreen> {
 
     final Uint8List markerIcon;
 
-    if (types.contains('restaurants'))
+    if (types.contains('restaurants')) {
       markerIcon =
           await getBytesFromAsset('assets/mapicons/restaurants.png', 75);
-    else if (types.contains('food'))
+    } else if (types.contains('food')) {
       markerIcon = await getBytesFromAsset('assets/mapicons/food.png', 75);
-    else if (types.contains('school'))
+    } else if (types.contains('school')) {
       markerIcon = await getBytesFromAsset('assets/mapicons/schools.png', 75);
-    else if (types.contains('bar'))
+    } else if (types.contains('bar')) {
       markerIcon = await getBytesFromAsset('assets/mapicons/bars.png', 75);
-    else if (types.contains('lodging'))
+    } else if (types.contains('lodging')) {
       markerIcon = await getBytesFromAsset('assets/mapicons/hotels.png', 75);
-    else if (types.contains('store'))
+    } else if (types.contains('store')) {
       markerIcon =
           await getBytesFromAsset('assets/mapicons/retail-stores.png', 75);
-    else if (types.contains('locality'))
+    } else if (types.contains('locality')) {
       markerIcon =
           await getBytesFromAsset('assets/mapicons/local-services.png', 75);
-    else
+    } else {
       markerIcon = await getBytesFromAsset('assets/mapicons/places.png', 75);
+    }
 
     final Marker marker = Marker(
         markerId: MarkerId('marker_$counter'),
@@ -179,6 +184,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
 
   @override
   void initState() {
+    // ignore: todo
     // TODO: implement initState
     _pageController = PageController(initialPage: 1, viewportFraction: 0.85)
       ..addListener(_onScroll);
@@ -199,6 +205,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
   //Fetch image to place inside the tile in the pageView
   void fetchImage() async {
     if (_pageController.page !=
+        // ignore: curly_braces_in_flow_control_structures
         null) if (allFavoritePlaces[_pageController.page!.toInt()]
             ['photos'] !=
         null) {
@@ -249,7 +256,8 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                 ),
                 searchToggle
                     ? Padding(
-                        padding: EdgeInsets.fromLTRB(15.0, 40.0, 15.0, 5.0),
+                        padding:
+                            const EdgeInsets.fromLTRB(15.0, 40.0, 15.0, 5.0),
                         child: Column(children: [
                           Container(
                             height: 50.0,
@@ -260,7 +268,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                             child: TextFormField(
                               controller: searchController,
                               decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
+                                  contentPadding: const EdgeInsets.symmetric(
                                       horizontal: 20.0, vertical: 15.0),
                                   border: InputBorder.none,
                                   hintText: 'Search',
@@ -271,16 +279,19 @@ class _MapScreenState extends ConsumerState<MapScreen> {
 
                                           searchController.text = '';
                                           _markers = {};
-                                          if (searchFlag.searchToggle)
+                                          if (searchFlag.searchToggle) {
                                             searchFlag.toggleSearch();
+                                          }
                                         });
                                       },
-                                      icon: Icon(Icons.close))),
+                                      icon: const Icon(Icons.close))),
                               onChanged: (value) {
-                                if (_debounce?.isActive ?? false)
+                                if (_debounce?.isActive ?? false) {
                                   _debounce?.cancel();
-                                _debounce = Timer(Duration(milliseconds: 700),
-                                    () async {
+                                }
+                                _debounce =
+                                    Timer(const Duration(milliseconds: 700),
+                                        () async {
                                   if (value.length > 2) {
                                     if (!searchFlag.searchToggle) {
                                       searchFlag.toggleSearch();
@@ -303,7 +314,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                       )
                     : Container(),
                 searchFlag.searchToggle
-                    ? allSearchResults.allReturnedResults.length != 0
+                    ? allSearchResults.allReturnedResults.isNotEmpty
                         ? Positioned(
                             top: 100.0,
                             left: 15.0,
@@ -333,18 +344,18 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                               ),
                               child: Center(
                                 child: Column(children: [
-                                  Text('No results to show',
+                                  const Text('No results to show',
                                       style: TextStyle(
                                           fontFamily: 'WorkSans',
                                           fontWeight: FontWeight.w400)),
-                                  SizedBox(height: 5.0),
+                                  const SizedBox(height: 5.0),
                                   Container(
                                     width: 125.0,
                                     child: ElevatedButton(
                                       onPressed: () {
                                         searchFlag.toggleSearch();
                                       },
-                                      child: Center(
+                                      child: const Center(
                                         child: Text(
                                           'Close this',
                                           style: TextStyle(
@@ -361,7 +372,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                     : Container(),
                 getDirections
                     ? Padding(
-                        padding: EdgeInsets.fromLTRB(15.0, 40.0, 15.0, 5),
+                        padding: const EdgeInsets.fromLTRB(15.0, 40.0, 15.0, 5),
                         child: Column(children: [
                           Container(
                             height: 50.0,
@@ -371,14 +382,14 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                             ),
                             child: TextFormField(
                               controller: _originController,
-                              decoration: InputDecoration(
+                              decoration: const InputDecoration(
                                   contentPadding: EdgeInsets.symmetric(
                                       horizontal: 20.0, vertical: 15.0),
                                   border: InputBorder.none,
                                   hintText: 'Origin'),
                             ),
                           ),
-                          SizedBox(height: 3.0),
+                          const SizedBox(height: 3.0),
                           Container(
                             height: 50.0,
                             decoration: BoxDecoration(
@@ -388,7 +399,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                             child: TextFormField(
                               controller: _destinationController,
                               decoration: InputDecoration(
-                                  contentPadding: EdgeInsets.symmetric(
+                                  contentPadding: const EdgeInsets.symmetric(
                                       horizontal: 20.0, vertical: 15.0),
                                   border: InputBorder.none,
                                   hintText: 'Destination',
@@ -421,7 +432,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                                                 _setPolyline(directions[
                                                     'polyline_decoded']);
                                               },
-                                              icon: Icon(Icons.search)),
+                                              icon: const Icon(Icons.search)),
                                           IconButton(
                                               onPressed: () {
                                                 setState(() {
@@ -433,7 +444,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                                                   _polylines = {};
                                                 });
                                               },
-                                              icon: Icon(Icons.close))
+                                              icon: const Icon(Icons.close))
                                         ],
                                       ))),
                             ),
@@ -443,7 +454,8 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                     : Container(),
                 radiusSlider
                     ? Padding(
-                        padding: EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 0.0),
+                        padding:
+                            const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 0.0),
                         child: Container(
                           height: 50.0,
                           color: Colors.black.withOpacity(0.2),
@@ -462,10 +474,12 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                               !pressedNear
                                   ? IconButton(
                                       onPressed: () {
-                                        if (_debounce?.isActive ?? false)
+                                        if (_debounce?.isActive ?? false) {
                                           _debounce?.cancel();
-                                        _debounce = Timer(Duration(seconds: 2),
-                                            () async {
+                                        }
+                                        _debounce =
+                                            Timer(const Duration(seconds: 2),
+                                                () async {
                                           var placesResult = await MapServices()
                                               .getPlaceDetails(tappedPoint,
                                                   radiusValue.toInt());
@@ -479,8 +493,8 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                                               placesResult['next_page_token'] ??
                                                   'none';
                                           Fluttertoast.showToast(
-                                              msg: placesResult[
-                                                  'next_page_token'],
+                                              msg:
+                                                  'Wait for a few seconds, your location is loading!',
                                               toastLength: Toast.LENGTH_SHORT,
                                               gravity: ToastGravity.BOTTOM,
                                               timeInSecForIosWeb: 1,
@@ -504,16 +518,18 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                                           pressedNear = true;
                                         });
                                       },
-                                      icon: Icon(
+                                      icon: const Icon(
                                         Icons.near_me,
                                         color: Colors.blue,
                                       ))
                                   : IconButton(
                                       onPressed: () {
-                                        if (_debounce?.isActive ?? false)
+                                        if (_debounce?.isActive ?? false) {
                                           _debounce?.cancel();
-                                        _debounce = Timer(Duration(seconds: 2),
-                                            () async {
+                                        }
+                                        _debounce =
+                                            Timer(const Duration(seconds: 2),
+                                                () async {
                                           if (tokenKey != 'none') {
                                             var placesResult =
                                                 await MapServices()
@@ -562,7 +578,8 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                                       allFavoritePlaces = [];
                                     });
                                   },
-                                  icon: Icon(Icons.close, color: Colors.red))
+                                  icon: const Icon(Icons.close,
+                                      color: Colors.red))
                             ],
                           ),
                         ),
@@ -571,13 +588,14 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                 pressedNear
                     ? Positioned(
                         bottom: 20.0,
-                        child: Container(
+                        child: SizedBox(
                           height: 200.0,
                           width: MediaQuery.of(context).size.width,
                           child: PageView.builder(
                               controller: _pageController,
                               itemCount: allFavoritePlaces.length,
                               itemBuilder: (BuildContext context, int index) {
+                                count = index;
                                 return _nearbyPlacesList(index);
                               }),
                         ))
@@ -590,7 +608,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                           front: Container(
                             height: 250.0,
                             width: 175.0,
-                            decoration: BoxDecoration(
+                            decoration: const BoxDecoration(
                                 color: Colors.white,
                                 borderRadius:
                                     BorderRadius.all(Radius.circular(8.0))),
@@ -600,7 +618,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                                   height: 150.0,
                                   width: 175.0,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
+                                      borderRadius: const BorderRadius.only(
                                         topLeft: Radius.circular(8.0),
                                         topRight: Radius.circular(8.0),
                                       ),
@@ -611,26 +629,26 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                                           fit: BoxFit.cover)),
                                 ),
                                 Container(
-                                  padding: EdgeInsets.all(7.0),
+                                  padding: const EdgeInsets.all(7.0),
                                   width: 175.0,
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      const Text(
                                         'Address: ',
                                         style: TextStyle(
                                             fontFamily: 'WorkSans',
                                             fontSize: 12.0,
                                             fontWeight: FontWeight.w500),
                                       ),
-                                      Container(
+                                      SizedBox(
                                           width: 105.0,
                                           child: Text(
                                             tappedPlaceDetail[
                                                     'formatted_address'] ??
                                                 'none given',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontFamily: 'WorkSans',
                                                 fontSize: 11.0,
                                                 fontWeight: FontWeight.w400),
@@ -639,27 +657,27 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                                   ),
                                 ),
                                 Container(
-                                  padding:
-                                      EdgeInsets.fromLTRB(7.0, 0.0, 7.0, 0.0),
+                                  padding: const EdgeInsets.fromLTRB(
+                                      7.0, 0.0, 7.0, 0.0),
                                   width: 175.0,
                                   child: Row(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
                                     children: [
-                                      Text(
+                                      const Text(
                                         'Contact: ',
                                         style: TextStyle(
                                             fontFamily: 'WorkSans',
                                             fontSize: 12.0,
                                             fontWeight: FontWeight.w500),
                                       ),
-                                      Container(
+                                      SizedBox(
                                           width: 105.0,
                                           child: Text(
                                             tappedPlaceDetail[
                                                     'formatted_phone_number'] ??
                                                 'none given',
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontFamily: 'WorkSans',
                                                 fontSize: 11.0,
                                                 fontWeight: FontWeight.w400),
@@ -679,7 +697,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                             child: Column(
                               children: [
                                 Padding(
-                                  padding: EdgeInsets.all(8.0),
+                                  padding: const EdgeInsets.all(8.0),
                                   child: Row(
                                     mainAxisAlignment:
                                         MainAxisAlignment.spaceEvenly,
@@ -689,12 +707,14 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                                           setState(() {
                                             isReviews = true;
                                             isPhotos = false;
+                                            isDetails = false;
                                           });
                                         },
                                         child: AnimatedContainer(
-                                          duration: Duration(milliseconds: 700),
+                                          duration:
+                                              const Duration(milliseconds: 700),
                                           curve: Curves.easeIn,
-                                          padding: EdgeInsets.fromLTRB(
+                                          padding: const EdgeInsets.fromLTRB(
                                               7.0, 4.0, 7.0, 4.0),
                                           decoration: BoxDecoration(
                                               borderRadius:
@@ -719,12 +739,14 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                                           setState(() {
                                             isReviews = false;
                                             isPhotos = true;
+                                            isDetails = false;
                                           });
                                         },
                                         child: AnimatedContainer(
-                                          duration: Duration(milliseconds: 700),
+                                          duration:
+                                              const Duration(milliseconds: 700),
                                           curve: Curves.easeIn,
-                                          padding: EdgeInsets.fromLTRB(
+                                          padding: const EdgeInsets.fromLTRB(
                                               7.0, 4.0, 7.0, 4.0),
                                           decoration: BoxDecoration(
                                               borderRadius:
@@ -734,6 +756,49 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                                                   : Colors.white),
                                           child: Text(
                                             'Photos',
+                                            style: TextStyle(
+                                                color: isPhotos
+                                                    ? Colors.white
+                                                    : Colors.black87,
+                                                fontFamily: 'WorkSans',
+                                                fontSize: 12.0,
+                                                fontWeight: FontWeight.w500),
+                                          ),
+                                        ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          setState(() {
+                                            isReviews = false;
+                                            isPhotos = false;
+                                            isDetails = true;
+                                          });
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                                builder: (context) =>
+                                                    DetailsScreen(
+                                                        detailData:
+                                                            allFavoritePlaces[
+                                                                count - 1],
+                                                        detailAddress:
+                                                            tappedPlaceDetail)),
+                                          );
+                                        },
+                                        child: AnimatedContainer(
+                                          duration:
+                                              const Duration(milliseconds: 700),
+                                          curve: Curves.easeIn,
+                                          padding: const EdgeInsets.fromLTRB(
+                                              7.0, 4.0, 7.0, 4.0),
+                                          decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(11.0),
+                                              color: isDetails
+                                                  ? Colors.green.shade300
+                                                  : Colors.white),
+                                          child: Text(
+                                            'Details',
                                             style: TextStyle(
                                                 color: isPhotos
                                                     ? Colors.white
@@ -905,7 +970,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     if (photoElement == null || photoElement.length == 0) {
       showBlankCard = true;
       return Container(
-        child: Center(
+        child: const Center(
           child: Text(
             'No Photos',
             style: TextStyle(
@@ -1067,7 +1132,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
           children: [
             Center(
               child: Container(
-                margin: EdgeInsets.symmetric(
+                margin: const EdgeInsets.symmetric(
                   horizontal: 10.0,
                   vertical: 20.0,
                 ),
@@ -1075,7 +1140,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                 width: 275.0,
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(10.0),
-                    boxShadow: [
+                    boxShadow: const [
                       BoxShadow(
                           color: Colors.black54,
                           offset: Offset(0.0, 4.0),
@@ -1093,7 +1158,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                                   height: 90.0,
                                   width: 90.0,
                                   decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.only(
+                                      borderRadius: const BorderRadius.only(
                                         bottomLeft: Radius.circular(10.0),
                                         topLeft: Radius.circular(10.0),
                                       ),
@@ -1106,7 +1171,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                               : Container(
                                   height: 90.0,
                                   width: 20.0,
-                                  decoration: BoxDecoration(
+                                  decoration: const BoxDecoration(
                                       borderRadius: BorderRadius.only(
                                         bottomLeft: Radius.circular(10.0),
                                         topLeft: Radius.circular(10.0),
@@ -1114,15 +1179,15 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                                       color: Colors.blue),
                                 )
                           : Container(),
-                      SizedBox(width: 5.0),
+                      const SizedBox(width: 5.0),
                       Column(
                         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Container(
+                          SizedBox(
                             width: 170.0,
                             child: Text(allFavoritePlaces[index]['name'],
-                                style: TextStyle(
+                                style: const TextStyle(
                                     fontSize: 12.5,
                                     fontFamily: 'WorkSans',
                                     fontWeight: FontWeight.bold)),
@@ -1136,7 +1201,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                             starCount: 5,
                             starSize: 10,
                             valueLabelColor: const Color(0xff9b9b9b),
-                            valueLabelTextStyle: TextStyle(
+                            valueLabelTextStyle: const TextStyle(
                                 color: Colors.white,
                                 fontFamily: 'WorkSans',
                                 fontWeight: FontWeight.w400,
@@ -1147,14 +1212,15 @@ class _MapScreenState extends ConsumerState<MapScreen> {
                             starSpacing: 2,
                             maxValueVisibility: false,
                             valueLabelVisibility: true,
-                            animationDuration: Duration(milliseconds: 1000),
+                            animationDuration:
+                                const Duration(milliseconds: 1000),
                             valueLabelPadding: const EdgeInsets.symmetric(
                                 vertical: 1, horizontal: 8),
                             valueLabelMargin: const EdgeInsets.only(right: 8),
                             starOffColor: const Color(0xffe7e8ea),
                             starColor: Colors.yellow,
                           ),
-                          Container(
+                          SizedBox(
                             width: 170.0,
                             child: Text(
                               allFavoritePlaces[index]['business_status'] ??
@@ -1245,7 +1311,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
 
   Widget buildListItem(AutoCompleteResult placeItem, searchFlag) {
     return Padding(
-      padding: EdgeInsets.all(5.0),
+      padding: const EdgeInsets.all(5.0),
       child: GestureDetector(
         onTapDown: (_) {
           FocusManager.instance.primaryFocus?.unfocus();
@@ -1259,7 +1325,7 @@ class _MapScreenState extends ConsumerState<MapScreen> {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Icon(Icons.location_on, color: Colors.green, size: 25.0),
+            const Icon(Icons.location_on, color: Colors.green, size: 25.0),
             SizedBox(width: 4.0),
             Container(
               height: 40.0,
