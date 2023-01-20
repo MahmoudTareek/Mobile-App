@@ -1,11 +1,17 @@
 import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:http/http.dart' as http;
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:http/http.dart' as http;
+
 import 'package:project/views/components.dart';
 import 'package:project/views/map.dart';
+import 'package:project/views/map.dart';
+
 import '../services/plan_service.dart';
+import 'components.dart';
+import 'details_screen.dart';
 
 class PlanScreen extends StatefulWidget {
   @override
@@ -30,8 +36,15 @@ class PlanScreenState extends State<PlanScreen> {
   Future getAllCategories(String _latitude, String _longitude) async {
     // double latitude = double.parse(_latitude);
     // double longitude = double.parse(_longitude);
+
+    //Reem's IP
+    // var url =
+    //     "http://192.168.0.2/mobile/Untitled-1.php?latitude=$_latitude&longitude=$_longitude";
+
+    //Basma's IP
     var url =
-        "http://192.168.0.2/mobile/Untitled-1.php?latitude=$_latitude&longitude=$_longitude";
+        "http://192.168.100.8/mobile/Untitled-1.php?latitude=$_latitude&longitude=$_longitude";
+
     // var requestBody =
     //     json.encode({'latitude': _latitude, 'longitude': _longitude});
     var response = await http.get(Uri.parse(url));
@@ -78,7 +91,7 @@ class PlanScreenState extends State<PlanScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Plan'),
+        title: const Text('Plan'),
         backgroundColor: maincolor,
       ),
       body: Padding(
@@ -138,7 +151,7 @@ class PlanScreenState extends State<PlanScreen> {
             ),
             const SizedBox(height: 15),
             _isLoading
-                ? Center(child: CircularProgressIndicator())
+                ? const Center(child: CircularProgressIndicator())
                 : Expanded(
                     child: Container(
                       child: ListView.builder(
@@ -147,7 +160,7 @@ class PlanScreenState extends State<PlanScreen> {
                             // if(locations[index].containsKey('photo') && locations[index]['photo'] is Map) {
                             return Card(
                               child: Row(children: [
-                                Container(
+                                SizedBox(
                                     width: 175,
                                     height: 140,
                                     // color: Colors.amber,
@@ -162,8 +175,8 @@ class PlanScreenState extends State<PlanScreen> {
                                         : Container(
                                             child: Text('No Image'),
                                           )),
-                                SizedBox(width: 10),
-                                Container(
+                                const SizedBox(width: 10),
+                                SizedBox(
                                   width: 175,
                                   height: 150,
                                   // color: Colors.red,
