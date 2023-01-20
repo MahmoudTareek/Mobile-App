@@ -1,14 +1,14 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:project/views/view_profile.dart';
 import 'package:project/views/components.dart';
 import '../model/details_data.dart';
 import '../views/map.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-class DetailsScreen extends StatelessWidget {
+class DetailsScreen extends StatefulWidget {
   static const IconData starHalf =
       IconData(0xe5fc, fontFamily: 'MaterialIcons', matchTextDirection: true);
 
@@ -18,10 +18,18 @@ class DetailsScreen extends StatelessWidget {
       {Key? key, required this.detailData, required this.detailAddress})
       : super(key: key);
 
+  @override
+  State<DetailsScreen> createState() => _DetailsScreenState();
+}
+
+class _DetailsScreenState extends State<DetailsScreen> {
   final data = DetailsData();
+
   final aPIkey = 'AIzaSyDFoM-XyXDsa3PzoGkY2a94fyW5LLMA6LQ';
 
-  bool isFavorite = false;
+  bool isFavorite = true;
+
+  void _changeStarAndText() {}
 
   @override
   Widget build(BuildContext context) {
@@ -104,7 +112,7 @@ class DetailsScreen extends StatelessWidget {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 7, left: 10),
                           child: Text(
-                            detailData['name'].toString(),
+                            widget.detailData['name'].toString(),
                             style: const TextStyle(
                                 fontSize: 28, fontFamily: 'Roboto Mono'),
                           ),
@@ -128,47 +136,57 @@ class DetailsScreen extends StatelessWidget {
                             ),
                             Column(
                               children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                      context,
-                                      MaterialPageRoute(
-                                          builder: (context) =>
-                                              const MapScreen()),
-                                    );
-                                  },
-                                  child: Container(
-                                    height: 150,
-                                    width: 340,
-                                    // ignore: sort_child_properties_last
-                                    child: Row(
-                                      // ignore: prefer_const_literals_to_create_immutables
-                                      children: [
-                                        const Padding(
+                                // GestureDetector(
+                                //   onTap: () {
+                                //     Navigator.push(
+                                //       context,
+                                //       MaterialPageRoute(
+                                //           builder: (context) =>
+                                //               const MapScreen()),
+                                //     );
+                                //   },
+                                SizedBox(
+                                  height: 150,
+                                  width: 340,
+                                  // ignore: sort_child_properties_last
+                                  child: Row(
+                                    // ignore: prefer_const_literals_to_create_immutables
+                                    children: [
+                                      Padding(
                                           padding: EdgeInsets.only(
                                               left: 10, bottom: 150, top: 10),
                                           child: IconButton(
-                                            onPressed: null,
-                                            icon: Icon(
-                                                Icons.favorite_border_outlined),
-                                            color: Colors.white,
-                                            iconSize: 36.0,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                    decoration: BoxDecoration(
-                                      borderRadius: BorderRadius.circular(20),
-                                      image: DecorationImage(
-                                        image: NetworkImage(detailData['photos']
-                                                    [0]['photo_reference'] !=
-                                                null
-                                            ? 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${detailData['photos'][0]['photo_reference']}&key=$aPIkey'
-                                            : 'https://pic.onlinewebfonts.com/svg/img_546302.png'),
-                                        fit: BoxFit.cover,
-                                      ),
-                                    ),
+                                              onPressed: () {
+                                                setState(() {
+                                                  // isFavorite = !isFavorite;
+                                                  if (isFavorite == true) {
+                                                    isFavorite = false;
+                                                  } else {
+                                                    isFavorite = true;
+                                                  }
+                                                });
+                                              },
+                                              icon: Icon(
+                                                isFavorite
+                                                    ? Icons.star
+                                                    : Icons.star_border,
+                                                size: 35,
+                                              ))),
+                                    ],
                                   ),
+                                  // decoration: BoxDecoration(
+                                  //   borderRadius: BorderRadius.circular(20),
+                                  //   image: DecorationImage(
+                                  //     image: NetworkImage(widget
+                                  //                     .detailData['photos'][0]
+                                  //                 ['photo_reference'] !=
+                                  //             null
+                                  //         ? 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${widget.detailData['photos'][0]['photo_reference']}&key=$aPIkey'
+                                  //         : 'https://pic.onlinewebfonts.com/svg/img_546302.png'),
+                                  //     fit: BoxFit.cover,
+                                  //   ),
+                                  // ),
+                                  // ),
                                 ),
                               ],
                             ),
@@ -194,12 +212,60 @@ class DetailsScreen extends StatelessWidget {
                                           ),
                                         ),
                                         Text(
-                                          // data.rating.toString(),
-                                          detailData['rating'].toString(),
+                                          widget.detailData['rating']
+                                              .toString(),
                                           style: const TextStyle(
                                               fontSize: 16,
                                               fontFamily: 'Roboto Mono'),
                                         ),
+                                        // child: RatingStars(
+                                        //   value:
+                                        //       detailData['rating'] != null
+                                        //           ? detailData['rating']
+                                        //           : 0,
+                                        //   starCount: 5,
+                                        //   starSize: 7,
+                                        //   valueLabelColor:
+                                        //       Color(0xff9b9b9b),
+                                        //   valueLabelTextStyle: TextStyle(
+                                        //       color: Colors.white,
+                                        //       fontFamily: 'WorkSans',
+                                        //       fontWeight: FontWeight.w400,
+                                        //       fontStyle: FontStyle.normal,
+                                        //       fontSize: 9.0),
+                                        //   valueLabelRadius: 7,
+                                        //   maxValue: 5,
+                                        //   starSpacing: 2,
+                                        //   maxValueVisibility: false,
+                                        //   valueLabelVisibility: true,
+                                        //   animationDuration:
+                                        //       Duration(milliseconds: 1000),
+                                        //   valueLabelPadding:
+                                        //       EdgeInsets.symmetric(
+                                        //           vertical: 1,
+                                        //           horizontal: 4),
+                                        //   valueLabelMargin:
+                                        //       EdgeInsets.only(right: 4),
+                                        //   starOffColor: Color(0xffe7e8ea),
+                                        //   starColor: Colors.yellow,
+                                        // )
+                                        //------------------------------------------------------------
+                                        //  child: RatingBar.builder() {
+                                        //   initialRating: detailData['rating'] != null
+                                        //         ? detailData['rating']
+                                        //         : 0;
+                                        //     minRating: 1;
+                                        //     direction: Axis.horizontal;
+                                        //     allowHalfRating: true;
+                                        //     itemCount: 5;
+                                        //     itemPadding: EdgeInsets.symmetric(horizontal: 4.0);
+                                        //     itemBuilder: (context, _) => Icon(
+                                        //       Icons.star,
+                                        //       color: Colors.amber,
+                                        //     );
+                                        //     onRatingUpdate: (rating) {
+                                        //       print(rating);
+                                        //     };}
                                       ],
                                     ),
                                   ),
@@ -236,7 +302,7 @@ class DetailsScreen extends StatelessWidget {
                                         ),
                                         Text(
                                           // data.open,
-                                          detailData['business_status']
+                                          widget.detailData['business_status']
                                               .toString(),
                                           style: const TextStyle(
                                               fontSize: 16,
@@ -320,7 +386,7 @@ class DetailsScreen extends StatelessWidget {
                             width: 340,
                             // ignore: prefer_const_constructors
                             child: Text(
-                              'Address to be copied',
+                              'Share address',
                               style: TextStyle(
                                   fontSize: 23, fontFamily: 'Roboto Mono'),
                             ),
@@ -337,7 +403,7 @@ class DetailsScreen extends StatelessWidget {
                       child: Padding(
                         padding: const EdgeInsets.all(25.0),
                         child: Text(
-                          detailAddress['formatted_address'].toString(),
+                          widget.detailAddress['formatted_address'].toString(),
                           style: const TextStyle(
                               fontSize: 18, fontFamily: 'Roboto Mono'),
                         ),
@@ -405,19 +471,4 @@ class DetailsScreen extends StatelessWidget {
       ),
     );
   }
-
-  // favoriteRespose() {
-  //   if (isFavorite == true) {
-  //     return const Icon(
-  //       Icons.favorite,
-  //       color: Colors.white,
-  //     );
-  //   } else {
-  //     return const Icon(
-  //       Icons.favorite_border,
-  //       color: Colors.white,
-  //     );
-  //   }
-  //   notifyListeners();
-  // }
 }
