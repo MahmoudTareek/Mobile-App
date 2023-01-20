@@ -9,7 +9,7 @@ class DetailsData {
   int timeWalking = 50;
   String open = 'Closes soon';
   int distance = 17;
-  String locationInfo = "";
+  String locationInfo = "Happy birthday Reemoshka";
 
   final imageUrl = [
     'assets/Salah-El-Din-Citadel.jpg',
