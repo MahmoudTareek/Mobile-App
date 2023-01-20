@@ -4,5 +4,5 @@ class DetailsData {
   int timeByCar = 25;
   int timeWalking = 50;
   String open = 'Closes soon';
-  int distance = 17;
+  String distance = "17 km";
 }
