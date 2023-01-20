@@ -55,7 +55,7 @@ class login extends StatelessWidget {
                       },
                       controller: emailController,
                       // controller: nameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Email',
                       ),
@@ -67,7 +67,7 @@ class login extends StatelessWidget {
                       controller: passwordController,
                       obscureText: true,
                       // controller: passwordController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Password',
                       ),
@@ -86,31 +86,28 @@ class login extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                   Container (child: Text(
-                        'Or continue with Google or Facebook',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                        ),
-                      
+                  Container(
+                    child: const Text(
+                      'Or continue with Google or Facebook',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
                       ),
-                      ),
+                    ),
+                  ),
 
                   // const Text('Forgot password'),
                   const SizedBox(height: 20),
-                  Container(
+                  SizedBox(
                       width: 300,
                       height: 50,
                       // padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                             primary: Color(0xffc29592)),
-
                         onPressed: () {
                           signIn();
                         },
-
-                    
                         child: const Text('Login'),
                       )),
                   Row(
