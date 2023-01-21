@@ -1,13 +1,15 @@
+import 'package:avatar_glow/avatar_glow.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:highlight_text/highlight_text.dart';
 import 'package:project/views/plan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:speech_to_text/speech_to_text.dart' as stt;
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
- 
 
   @override
   // ignore: library_private_types_in_public_api
@@ -18,8 +20,11 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        // signout button 
-      appBar: AppBar(actions: [IconButton(onPressed: signout, icon: Icon(Icons.logout))],),
+      // signout button
+      appBar: AppBar(
+        actions: [IconButton(onPressed: signout, icon: Icon(Icons.logout))],
+      ),
+
       body: SafeArea(
         child: Stack(
           children: [
@@ -38,7 +43,7 @@ class _HomeScreen extends State<HomeScreen> {
                 ),
               ),
             ),
-            ListView(
+            Column(
               // mainAxisSize: MainAxisSize.max,
               children: [
                 SizedBox(height: 50),
@@ -120,32 +125,40 @@ class _HomeScreen extends State<HomeScreen> {
                     ),
                   ),
                 ),
-                SizedBox(
+                const SizedBox(
                   height: 20,
                 ),
-                Text(
-                  "YOU RECENTLY WATCHED",
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                      fontSize: 16,
-                      color: Color(0xFFb89cbb),
-                      fontWeight: FontWeight.bold),
+                // Text(
+                //   "YOU RECENTLY WATCHED",
+                //   textAlign: TextAlign.center,
+                //   style: TextStyle(
+                //       fontSize: 16,
+                //       color: Color(0xFFb89cbb),
+                //       fontWeight: FontWeight.bold),
+                // ),
+                const SizedBox(
+                  height: 5,
                 ),
-                SizedBox(
-                  height: 50,
-                ),
-                Container(
-                  child: CarouselSlider(
-                      options: CarouselOptions(height: 250, autoPlay: false),
-                      items: [
-                        MyImageView("assets/images/NYC.jpg"),
-                        MyImageView("assets/images/city.jpg"),
-                        MyImageView("assets/images/city2.jpg"),
-                        // MyImageView("assets/images/NYC.jpg"),
-                        // MyImageView("assets/images/NYC.jpg"),
-                        // MyImageView("assets/images/NYC.jpg"),
-                      ]),
-                ),
+
+                CarouselSlider(
+                    options: CarouselOptions(
+                      height: 300,
+                      autoPlay: true,
+                      enlargeCenterPage: true,
+                      autoPlayCurve: Curves.fastOutSlowIn,
+                      enableInfiniteScroll: true,
+                      autoPlayAnimationDuration: Duration(milliseconds: 800),
+                    ),
+                    items: [
+                      MyImageView(
+                          "assets/images/sea2.jpg", "Explore the World"),
+                      MyImageView("assets/images/acity.jpg",
+                          "Visit the most beautiful cities"),
+                      MyImageView("assets/images/skiing.jpg",
+                          "Find the best activities"),
+                      MyImageView("assets/images/arch.jpg",
+                          "Save your favorite Places"),
+                    ]),
               ],
             ),
           ],
@@ -154,65 +167,83 @@ class _HomeScreen extends State<HomeScreen> {
     );
   }
 
-  
-
   void signout() {
-  FirebaseAuth.instance.signOut();
+    FirebaseAuth.instance.signOut();
   }
 }
 
 class MyImageView extends StatelessWidget {
   String imgPath;
+  String title;
 
-  MyImageView(this.imgPath);
-
+  MyImageView(this.imgPath, this.title);
 
   @override
   Widget build(BuildContext context) {
     // TODO: implement build
     return GestureDetector(
-        onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(builder: (context) => PlanScreen()),
-          );
-    },
-      child: Card(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(25.0),
-      ),
-      // elevation: 10.0,
-      margin: const EdgeInsets.all(17),
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => PlanScreen()),
+        );
+      },
+      // child: Card(
+      //   shape: RoundedRectangleBorder(
+      //     borderRadius: BorderRadius.circular(25.0),
+      //   ),
+      //   // elevation: 10.0,
+      //   margin: const EdgeInsets.all(6.0),
       child: Stack(
-        // mainAxisSize: MainAxisSize.min,
-        // crossAxisAlignment: CrossAxisAlignment.start,
-        alignment: AlignmentDirectional.bottomEnd,
         children: [
           Container(
-            height: 200.0,
+            margin: EdgeInsets.all(6.0),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
+              borderRadius: BorderRadius.circular(8.0),
+              gradient: LinearGradient(
+                begin: Alignment.centerLeft,
+                end: Alignment.centerRight,
+                colors: [
+                  Colors.black.withOpacity(0.5),
+                  Colors.transparent,
+                ],
+              ),
               image: DecorationImage(
                   image: AssetImage(imgPath), fit: BoxFit.cover),
             ),
           ),
-          Container(
-            height: 60,
-            width: MediaQuery.of(context).size.width,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10.0),
-              color: Color(0xFFEBECF0),
-            ),
-            child: Padding(
-              padding: EdgeInsets.all(10),
-              child: Text("description",
-               textAlign: TextAlign.center,
-               ),
+          Positioned.fill(
+            child: Container(
+              padding: EdgeInsets.all(10.0),
+              decoration: const BoxDecoration(
+                borderRadius: BorderRadius.all(Radius.circular(20)),
+                gradient: LinearGradient(
+                  colors: [
+                    Color(0xFF9f9da9),
+                    Colors.transparent,
+                    Colors.transparent,
+                    Color(0xFF9f9da9),
+                  ],
+                  end: Alignment.topCenter,
+                  begin: Alignment.bottomCenter,
+                  stops: [0, 0, 0.6, 1],
+                ),
+              ),
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                child: Text(
+                  title,
+                  style: GoogleFonts.oswald(
+                      textStyle:
+                          const TextStyle(fontSize: 30, color: Colors.white)),
+                ),
+              ),
             ),
           ),
         ],
       ),
-    ),
+
+      // ),
     );
     //   child: Image.asset(imgPath,),
   }

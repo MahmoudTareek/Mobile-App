@@ -114,7 +114,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           child: Text(
                             widget.detailData['name']
                                 .toString()
-                                .substring(0, 22),
+                                .substring(0, 17),
                             style: const TextStyle(
                                 fontSize: 28, fontFamily: 'Roboto Mono'),
                           ),
