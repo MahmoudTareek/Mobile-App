@@ -21,7 +21,7 @@ class Auth extends StatelessWidget {
           if (snapshot.hasData) {
             return HomeScreen();
           } else {
-            return DashboardScreen();
+            return login();
           }
 //not logged in haywadeh 3a lloginscreen
         },

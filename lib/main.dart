@@ -31,7 +31,7 @@ void main() async {
         // home: FavoritesScreen(),
         initialRoute: 'OnBoardingScreen',
         routes: {
-          'OnBoardingScreen': (context) => HomeScreen(),
+          'OnBoardingScreen': (context) => OnBoardingScreen(),
         },
         debugShowCheckedModeBanner: false,
  
