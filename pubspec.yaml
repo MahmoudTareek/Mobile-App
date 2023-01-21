@@ -52,8 +52,10 @@ dependencies:
   flutter_rating_stars: ^1.0.3+4
   fab_circular_menu: ^1.0.2
   flip_card: ^0.6.0
+
   # flutter_native_splash: ^2.2.17
   # provider: ^6.0.4
+
   # flutter_google_places: ^0.3.0
   # flutter_map: ^3.0.0
   flutter_svg: ^1.1.6
@@ -64,9 +66,19 @@ dependencies:
   firebase_auth: ^4.2.3
   cloud_firestore: ^4.3.0
   sqflite: ^2.2.2
+
   google_sign_in: ^5.4.3
   flutter_facebook_auth: ^5.0.7
   flutter_signin_button: ^2.0.0
+
+  json_annotation: ^4.7.0
+  flutter_rating_bar: ^4.0.1
+  speech_to_text: ^6.1.1
+  highlight_text: ^1.6.0
+  avatar_glow: ^2.0.2
+  
+
+
 flutter_icons:
   android: "launcher_icon"
   ios: true
@@ -80,6 +92,8 @@ flutter_icons:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  build_runner: ^2.3.3
+  json_serializable: ^6.5.4
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

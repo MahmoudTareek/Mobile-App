@@ -42,7 +42,7 @@ insertToDatabase({
   });
 }
 
-//retrive data from database
-// Future<List<Map<String, dynamic>>> retriveData() async {
-//   return await database.rawQuery('SELECT * FROM favourites');
-// }
+
+Future<List<Map<String, dynamic>>> retriveData() async {
+  return await database.rawQuery('SELECT * FROM favourites');
+}

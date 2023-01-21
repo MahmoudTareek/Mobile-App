@@ -68,7 +68,7 @@ class login extends StatelessWidget {
                       },
                       controller: emailController,
                       // controller: nameController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Email',
                       ),
@@ -80,7 +80,7 @@ class login extends StatelessWidget {
                       controller: passwordController,
                       obscureText: true,
                       // controller: passwordController,
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         border: OutlineInputBorder(),
                         labelText: 'Password',
                       ),
@@ -100,8 +100,10 @@ class login extends StatelessWidget {
                     height: 20,
                   ),
                   Container(
+
                     child: Text(
                       'Or continue with Google',
+
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 12,
@@ -109,34 +111,16 @@ class login extends StatelessWidget {
                     ),
                   ),
 
-          
-
-                  // Container(
-                  //   width: 300,
-                  //   height: 50,
-                  //   child: ElevatedButton.icon(
-                  //     onPressed: () {
-                  //       //print hello
-
-                  //       // authServicefacebook().signInWithFacebook();
-                  //     },
-                  //     icon: Icon(Icons.facebook),
-                  //     label: Text("Facebook"),
-                  //   ),
-                  // ),
-
-                  
-
-            
-                  // const Text('Forgot password'),
                   const SizedBox(height: 20),
 
                   Container(
+
                       width: 300,
                       height: 50,
                       // padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
+
                           backgroundColor: Color.fromRGBO(199, 197, 211, 1),
                           textStyle:
                               const TextStyle(fontWeight: FontWeight.bold),
@@ -146,6 +130,7 @@ class login extends StatelessWidget {
                               width: 2),
                           shape: const StadiumBorder(),
                         ),
+
                         onPressed: () {
                           signIn();
                         },
