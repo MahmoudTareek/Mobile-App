@@ -27,7 +27,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   final aPIkey = 'AIzaSyDFoM-XyXDsa3PzoGkY2a94fyW5LLMA6LQ';
 
-  bool isFavorite = true;
+  bool isFavorite = false;
 
   void _changeStarAndText() {}
 
@@ -112,9 +112,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 7, left: 10),
                           child: Text(
-                            widget.detailData['name']
-                                .toString()
-                                .substring(0, 22),
+                            widget.detailData['name'].toString(),
                             style: const TextStyle(
                                 fontSize: 28, fontFamily: 'Roboto Mono'),
                           ),
