@@ -1,8 +1,16 @@
+import 'dart:html';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:onboarding/onboarding.dart';
+import 'package:project/services/face_auth.dart';
+import 'package:project/services/google_auth.dart';
 import 'package:project/views/home_page.dart';
 import 'package:project/views/signup.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+// import 'package:flutter_signin_button/flutter_signin_button.dart';
+
+// import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 class login extends StatelessWidget {
   login({super.key});
@@ -22,17 +30,22 @@ class login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    
     return MaterialApp(
+      //background color of the app
+
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        // backgroundColor: const Color.fromARGB(255, 71, 22, 168),
+
         appBar: AppBar(
-          backgroundColor: const Color(0xffc7c5d3),
+          backgroundColor: const Color(0xffc29592),
           // ignore: prefer_const_constructors
           title: Center(
             child: const Text('Sign in'),
           ),
         ),
-        backgroundColor: const Color(0xfffcebe3),
+        
         body: SafeArea(
           child: SingleChildScrollView(
             child: Form(
@@ -86,33 +99,97 @@ class login extends StatelessWidget {
                   const SizedBox(
                     height: 20,
                   ),
-                   Container (child: Text(
-                        'Or continue with Google or Facebook',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                        ),
-                      
+                  Container(
+                    child: Text(
+                      'Or continue with Google',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontSize: 12,
                       ),
-                      ),
+                    ),
+                  ),
 
+          
+
+                  // Container(
+                  //   width: 300,
+                  //   height: 50,
+                  //   child: ElevatedButton.icon(
+                  //     onPressed: () {
+                  //       //print hello
+
+                  //       // authServicefacebook().signInWithFacebook();
+                  //     },
+                  //     icon: Icon(Icons.facebook),
+                  //     label: Text("Facebook"),
+                  //   ),
+                  // ),
+
+                  
+
+            
                   // const Text('Forgot password'),
                   const SizedBox(height: 20),
+
                   Container(
                       width: 300,
                       height: 50,
                       // padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: Color(0xffc29592)),
-
+                          backgroundColor: Color.fromRGBO(199, 197, 211, 1),
+                          textStyle:
+                              const TextStyle(fontWeight: FontWeight.bold),
+                          elevation: 10,
+                          side: const BorderSide(
+                              color: Color.fromARGB(255, 187, 185, 197),
+                              width: 2),
+                          shape: const StadiumBorder(),
+                        ),
                         onPressed: () {
                           signIn();
                         },
-
-                    
                         child: const Text('Login'),
                       )),
+                      
+                  const SizedBox(height: 20),
+
+                    Container(
+                    width: 300,
+                    height: 50,
+
+                    // padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0),
+
+                    child: ElevatedButton.icon(
+                      label: Text("Google"),
+                      //button style 
+
+                       icon: const Icon(Icons.sync),
+
+                      // child: const Text('Google'),
+
+                      style: ElevatedButton.styleFrom(
+                       
+                        onPrimary: Color.fromARGB(255, 187, 185, 197),
+                          backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                          textStyle:
+                              const TextStyle(fontWeight: FontWeight.bold,
+                              ),
+                         elevation: 10,
+                          side: const BorderSide(
+                              color: Color.fromARGB(255, 187, 185, 197),
+                              width: 2),
+                          shape: const StadiumBorder(),  
+                               
+                        ),
+                      onPressed: () {
+                        //print hello
+
+                        AuthService().signingoogle();
+                      }, 
+                    ),
+                  
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[

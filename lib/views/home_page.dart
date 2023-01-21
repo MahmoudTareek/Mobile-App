@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:project/views/plan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
@@ -19,7 +20,10 @@ class _HomeScreen extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         // signout button 
-      appBar: AppBar(actions: [IconButton(onPressed: signout, icon: Icon(Icons.logout))],),
+      appBar: AppBar(actions: [IconButton(
+        onPressed: signout,
+        
+       icon: Icon(Icons.logout))],),
       body: SafeArea(
         child: Stack(
           children: [
@@ -158,8 +162,12 @@ class _HomeScreen extends State<HomeScreen> {
 
   void signout() {
   FirebaseAuth.instance.signOut();
+  GoogleSignIn().signOut();
+
   }
 }
+
+
 
 class MyImageView extends StatelessWidget {
   String imgPath;
