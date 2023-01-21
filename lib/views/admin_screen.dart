@@ -1,13 +1,10 @@
-import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
-import 'package:project/model/admin_model.dart';
 import 'package:project/views/components.dart';
+import 'package:project/views/navbar.dart';
+import '../services/user_service.dart';
 
 class AdminScreen extends StatefulWidget {
-  const AdminScreen({super.key});
-
   @override
-  // ignore: library_private_types_in_public_api
   _AdminScreenState createState() => _AdminScreenState();
 }
 
@@ -16,136 +13,77 @@ class _AdminScreenState extends State<AdminScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        title: const Text('Users'),
         backgroundColor: maincolor,
       ),
-      body: ConditionalBuilder(
-        condition: users.isNotEmpty,
-        builder: (context) => ListView.separated(
-          itemBuilder: (context, index) => buildFavoriteItem(users[index]),
-          separatorBuilder: (context, index) => Padding(
-            padding: const EdgeInsetsDirectional.only(
-              start: 20.0,
-              end: 20.0,
-            ),
-            child: Container(
-              width: double.infinity,
-              height: 1.0,
-              color: Colors.grey[300],
-            ),
-          ),
-          itemCount: users.length,
-        ),
-        fallback: (context) => Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const [
-              Icon(
-                Icons.not_interested,
-                color: Colors.red,
-                size: 120.0,
-              ),
-              Text(
-                'No Favorites',
-                style: TextStyle(
-                  fontSize: 30.0,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.red,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget buildFavoriteItem(UsersModel model) => Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          const SizedBox(
-            height: 20.0,
-          ),
-          Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(
-                height: 100.0,
-                width: 120.0,
-                child: Stack(
-                  alignment: AlignmentDirectional.topStart,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.all(5.0),
-                      child: Image.asset(
-                        model.image,
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-              Expanded(
-                child: Padding(
-                  padding: const EdgeInsets.only(
-                    top: 20.0,
-                  ),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+      body: StreamBuilder(
+        stream: readAllUsers(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            final allUsers = snapshot.data!;
+            return ListView.builder(
+              itemCount: allUsers.length,
+              itemBuilder: (context, index) {
+                final user = allUsers[index];
+                return ListTile(
+                  title: Text(user.name),
+                  subtitle: Text(user.email),
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(
-                        model.name,
-                        style: const TextStyle(
-                          fontSize: 22.0,
-                          fontWeight: FontWeight.bold,
+                      IconButton(
+                        icon: const Icon(
+                          Icons.delete,
+                          color: Colors.red,
                         ),
+                        onPressed: () async {
+                          await deleteUser(user.uId);
+                          final snackBar = SnackBar(
+                            content: Text(
+                              '${user.name} is deleted successfully',
+                            ),
+                          );
+                          ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                        },
                       ),
-                      Row(
-                        children: [
-                          Text(
-                            model.email,
-                            style: const TextStyle(
-                              fontSize: 16.0,
-                            ),
-                          ),
-                          const Spacer(),
-                          Padding(
-                            padding: const EdgeInsets.only(
-                              right: 30.0,
-                              bottom: 20.0,
-                            ),
-                            child: IconButton(
-                              onPressed: () {
-                                setState(() {
-                                  model.isdeleted = !model.isdeleted;
-                                  users.removeWhere(
-                                      (model) => model.isdeleted == false);
-                                  final snackBar = SnackBar(
-                                    content: Text(
-                                      '${model.name} is deleted successfully',
-                                    ),
-                                  );
-                                  ScaffoldMessenger.of(context)
-                                      .showSnackBar(snackBar);
-                                });
-                              },
-                              icon: const CircleAvatar(
-                                radius: 15.0,
-                                backgroundColor: Colors.white,
-                                child: Icon(
-                                  Icons.delete,
-                                  size: 35.0,
-                                  color: Colors.red,
-                                ),
+                      IconButton(
+                        icon: const Icon(
+                          Icons.add_moderator,
+                          color: Colors.blue,
+                        ),
+                        onPressed: () async {
+                          await changeRole(user.uId);
+                          if (user.role == 'user') {
+                            final snackBar = SnackBar(
+                              content: Text(
+                                '${user.name} is admin now',
                               ),
-                            ),
-                          ),
-                        ],
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          } else {
+                            final snackBar = SnackBar(
+                              content: Text(
+                                '${user.name} is user now',
+                              ),
+                            );
+                            ScaffoldMessenger.of(context)
+                                .showSnackBar(snackBar);
+                          }
+                        },
                       ),
                     ],
                   ),
-                ),
-              ),
-            ],
-          ),
-        ],
-      );
+                );
+              },
+            );
+          } else {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          }
+        },
+      ),
+    );
+  }
 }
