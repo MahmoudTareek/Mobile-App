@@ -246,7 +246,7 @@ class _ViewProfileState extends State<ViewProfile> {
                       Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => const AdminScreen()),
+                            builder: (context) => AdminScreen()),
                       ),
                     },
                     // ignore: sort_child_properties_last
