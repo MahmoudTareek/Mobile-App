@@ -151,7 +151,7 @@ class PlanScreenState extends State<PlanScreen> {
                             return Card(
                               child: Row(children: [
                                 SizedBox(
-                                  width: 175,
+                                  width: 140,
                                   height: 140,
                                   // color: Colors.amber,
 
