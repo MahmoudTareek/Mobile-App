@@ -38,30 +38,20 @@ class PlanScreenState extends State<PlanScreen> {
     // double longitude = double.parse(_longitude);
 
     //Reem's IP
-    // var url =
-    //     "http://192.168.0.2/mobile/Untitled-1.php?latitude=$_latitude&longitude=$_longitude";
+    var url =
+        "http://192.168.0.4/mobile/Untitled-1.php?latitude=$_latitude&longitude=$_longitude";
 
     //Basma's IP
-    var url =
-        "http://192.168.100.8/mobile/Untitled-1.php?latitude=$_latitude&longitude=$_longitude";
+    // var url =
+    //     "http://192.168.100.8/mobile/Untitled-1.php?latitude=$_latitude&longitude=$_longitude";
 
     // var requestBody =
     //     json.encode({'latitude': _latitude, 'longitude': _longitude});
     var response = await http.get(Uri.parse(url));
 
-    Fluttertoast.showToast(
-      msg: 'here',
-      toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
-      timeInSecForIosWeb: 1,
-      backgroundColor: Colors.green,
-      textColor: Colors.white,
-      fontSize: 16.0,
-    );
-
     if (response.statusCode == 200) {
       Fluttertoast.showToast(
-        msg: _latitude,
+        msg: 'loading',
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
@@ -116,15 +106,15 @@ class PlanScreenState extends State<PlanScreen> {
                             _longitude = data[0]['lon'];
                             getAllCategories(_latitude, _longitude);
                           }
-                          Fluttertoast.showToast(
-                            msg: _latitude,
-                            toastLength: Toast.LENGTH_SHORT,
-                            gravity: ToastGravity.BOTTOM,
-                            timeInSecForIosWeb: 1,
-                            backgroundColor: Colors.green,
-                            textColor: Colors.white,
-                            fontSize: 16.0,
-                          );
+                          // Fluttertoast.showToast(
+                          //   msg: _latitude,
+                          //   toastLength: Toast.LENGTH_SHORT,
+                          //   gravity: ToastGravity.BOTTOM,
+                          //   timeInSecForIosWeb: 1,
+                          //   backgroundColor: Colors.green,
+                          //   textColor: Colors.white,
+                          //   fontSize: 16.0,
+                          // );
                         },
                       ),
                       hintText: "Search",
@@ -161,20 +151,18 @@ class PlanScreenState extends State<PlanScreen> {
                             return Card(
                               child: Row(children: [
                                 SizedBox(
-                                    width: 175,
-                                    height: 140,
-                                    // color: Colors.amber,
+                                  width: 175,
+                                  height: 140,
+                                  // color: Colors.amber,
 
-                                    child: locations != null &&
-                                            locations[index]['photo'] != null &&
-                                            locations[index]['photo']
-                                                    ['images'] !=
-                                                null
-                                        ? Image.network(locations[index]
-                                            ['photo']['images']['large']['url'])
-                                        : Container(
-                                            child: Text('No Image'),
-                                          )),
+                                  child: locations != null &&
+                                          locations[index]['photo'] != null &&
+                                          locations[index]['photo']['images'] !=
+                                              null
+                                      ? Image.network(locations[index]['photo']
+                                          ['images']['large']['url'])
+                                      : Image.asset('assets/images/no_img.png'),
+                                ),
                                 const SizedBox(width: 10),
                                 SizedBox(
                                   width: 175,
