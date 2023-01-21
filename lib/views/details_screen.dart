@@ -29,8 +29,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
 
   bool isFavorite = false;
 
-  void _changeStarAndText() {}
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -87,7 +85,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                               },
                               child: Padding(
                                 padding:
-                                    const EdgeInsets.only(left: 10, bottom: 5),
+                                    const EdgeInsets.only(left: 10, bottom: 10),
                                 child: Container(
                                   height: 40,
                                   width: 40,
@@ -106,23 +104,26 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         ],
                       ),
                     ),
+                    const SizedBox(
+                      height: 10,
+                    ),
                     Row(
                       mainAxisSize: MainAxisSize.max,
                       children: [
-                        Padding(
-                          padding: const EdgeInsets.only(bottom: 7, left: 10),
+                        Expanded(
                           child: Text(
-                            widget.detailData['name']
-                                .toString()
-                                .substring(0, 17),
+                            widget.detailData['name'].toString(),
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            //.substring(0, 25),
                             style: const TextStyle(
                                 fontSize: 28, fontFamily: 'Roboto Mono'),
                           ),
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
                       ],
+                    ),
+                    const SizedBox(
+                      height: 15,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -265,7 +266,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                           ),
                                         ),
                                         Text(
-                                          // data.open,
                                           widget.detailData['business_status']
                                               .toString(),
                                           style: const TextStyle(
@@ -321,14 +321,14 @@ class _DetailsScreenState extends State<DetailsScreen> {
                             Icons.directions_bus,
                             size: 20,
                           ),
-                          Text(data.timeByCar.toString(),
+                          Text(data.timeByBus.toString(),
                               style: const TextStyle(
                                   fontSize: 18, fontFamily: 'Roboto Mono')),
                           const Icon(
                             Icons.directions_run,
                             size: 20,
                           ),
-                          Text(data.timeByCar.toString(),
+                          Text(data.timeWalking,
                               style: const TextStyle(
                                   fontSize: 18, fontFamily: 'Roboto Mono')),
                         ],
