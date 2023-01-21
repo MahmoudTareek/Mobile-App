@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:project/services/user_service.dart';
 
 Color maincolor = const Color(0xff3e536e);
 Color favoritesColor = Colors.red;
 Color detailsBackground = const Color(0xfff4f3f6);
+var userEmail = getUserEmail();
+final aPIkey = 'AIzaSyDFoM-XyXDsa3PzoGkY2a94fyW5LLMA6LQ';
 
 Widget defaultButton({
   double width = double.infinity,

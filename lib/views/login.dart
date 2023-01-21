@@ -1,4 +1,4 @@
-import 'dart:html';
+// import 'dart:html';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -30,7 +30,6 @@ class login extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    
     return MaterialApp(
       //background color of the app
 
@@ -45,7 +44,7 @@ class login extends StatelessWidget {
             child: const Text('Sign in'),
           ),
         ),
-        
+
         body: SafeArea(
           child: SingleChildScrollView(
             child: Form(
@@ -100,27 +99,21 @@ class login extends StatelessWidget {
                     height: 20,
                   ),
                   Container(
-
                     child: Text(
                       'Or continue with Google',
-
                       style: TextStyle(
                         color: Colors.black,
                         fontSize: 12,
                       ),
                     ),
                   ),
-
                   const SizedBox(height: 20),
-
                   Container(
-
                       width: 300,
                       height: 50,
                       // padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0),
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-
                           backgroundColor: Color.fromRGBO(199, 197, 211, 1),
                           textStyle:
                               const TextStyle(fontWeight: FontWeight.bold),
@@ -130,16 +123,13 @@ class login extends StatelessWidget {
                               width: 2),
                           shape: const StadiumBorder(),
                         ),
-
                         onPressed: () {
                           signIn();
                         },
                         child: const Text('Login'),
                       )),
-                      
                   const SizedBox(height: 20),
-
-                    Container(
+                  Container(
                     width: 300,
                     height: 50,
 
@@ -147,33 +137,30 @@ class login extends StatelessWidget {
 
                     child: ElevatedButton.icon(
                       label: Text("Google"),
-                      //button style 
+                      //button style
 
-                       icon: const Icon(Icons.sync),
+                      icon: const Icon(Icons.sync),
 
                       // child: const Text('Google'),
 
                       style: ElevatedButton.styleFrom(
-                       
                         onPrimary: Color.fromARGB(255, 187, 185, 197),
-                          backgroundColor: Color.fromARGB(255, 255, 255, 255),
-                          textStyle:
-                              const TextStyle(fontWeight: FontWeight.bold,
-                              ),
-                         elevation: 10,
-                          side: const BorderSide(
-                              color: Color.fromARGB(255, 187, 185, 197),
-                              width: 2),
-                          shape: const StadiumBorder(),  
-                               
+                        backgroundColor: Color.fromARGB(255, 255, 255, 255),
+                        textStyle: const TextStyle(
+                          fontWeight: FontWeight.bold,
                         ),
+                        elevation: 10,
+                        side: const BorderSide(
+                            color: Color.fromARGB(255, 187, 185, 197),
+                            width: 2),
+                        shape: const StadiumBorder(),
+                      ),
                       onPressed: () {
                         //print hello
 
                         AuthService().signingoogle();
-                      }, 
+                      },
                     ),
-                  
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,

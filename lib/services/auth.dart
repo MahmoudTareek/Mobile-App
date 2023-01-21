@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:project/views/home_page.dart';
 import 'package:project/views/login.dart';
 import 'package:project/views/admin_dashboard.dart';
-
+import 'package:project/views/navbar.dart';
 
 //class auth
 class Auth extends StatelessWidget {
@@ -19,7 +19,7 @@ class Auth extends StatelessWidget {
 //logged in hayrag3o 3al home screen
 
           if (snapshot.hasData) {
-            return HomeScreen();
+            return const Navbar();
           } else {
             return login();
           }

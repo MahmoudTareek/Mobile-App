@@ -60,3 +60,8 @@ Future<SignUpModel?> getRole() async {
       .get();
   return SignUpModel.fromJson(doc['role']!);
 }
+
+Future<String> getUserEmail() async {
+  final user = FirebaseAuth.instance.currentUser;
+  return user!.email.toString();
+}

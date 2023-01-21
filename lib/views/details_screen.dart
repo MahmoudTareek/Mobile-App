@@ -2,11 +2,14 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:project/views/view_profile.dart';
 import 'package:project/views/components.dart';
 import '../model/details_data.dart';
 import '../views/map.dart';
 import 'package:flutter_rating_stars/flutter_rating_stars.dart';
+import '../model/favourites_model.dart';
+import '../services/user_service.dart';
 
 class DetailsScreen extends StatefulWidget {
   static const IconData starHalf =
@@ -161,11 +164,13 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                         IconButton(
                                             onPressed: () {
                                               setState(() {
+                                                createDatabase();
                                                 // isFavorite = !isFavorite;
                                                 if (isFavorite == true) {
                                                   isFavorite = false;
                                                 } else {
                                                   isFavorite = true;
+                                                  addToFavorites();
                                                 }
                                               });
                                             },
@@ -418,34 +423,24 @@ class _DetailsScreenState extends State<DetailsScreen> {
               ],
             ),
           ),
-          // Expanded(
-          //   child: ListView(
-          //     shrinkWrap: true,
-          //     scrollDirection: Axis.horizontal,
-          //     children: [
-          // Container(
-          //   margin: const EdgeInsets.symmetric(
-          //       horizontal: 10, vertical: 20),
-          //   height: 300,
-          //   width: 200,
-          //   decoration: BoxDecoration(
-          //     borderRadius: BorderRadius.circular(20),
-          //     // ignore: prefer_const_constructors
-          //     image: DecorationImage(
-          //       image: const AssetImage(
-          //           'assets/images/gettyimages-1191607545-612x612.jpg'),
-          //       fit: BoxFit.cover,
-          //     ),
-          //     color: detailsBackground,
-          //   ),
-          // )
-          //],
-          //),
-          //),
-          //   ],
-          // ),
         ),
       ),
     );
+  }
+
+  Future addToFavorites() async {
+    Fluttertoast.showToast(
+        msg: 'Added to favorites',
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.grey,
+        textColor: Colors.black);
+    await insertToDatabase(
+        name: widget.detailData['name'].toString(),
+        location: widget.detailAddress['formatted_address'].toString(),
+        rating: widget.detailData['rating'].toString(),
+        image: widget.detailData['photos'][0]['photo_reference'].toString());
+    return null;
   }
 }

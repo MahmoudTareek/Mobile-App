@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:sqflite/sqflite.dart';
 
@@ -8,7 +10,7 @@ void createDatabase() {
     print('Database created');
     database
         .execute(
-            'CREATE TABLE favourites (name TEXT, location TEXT, rating TEXT, image TEXT)')
+            'CREATE TABLE IF NOT EXISTS favourites (name TEXT, location TEXT, rating TEXT, image TEXT)')
         .then((value) {
       print('Table created');
     }).catchError((Error) {
@@ -42,7 +44,7 @@ insertToDatabase({
   });
 }
 
-
-Future<List<Map<String, dynamic>>> retriveData() async {
+Future<List> retriveDataByEmail() async {
+  print('retrieve data');
   return await database.rawQuery('SELECT * FROM favourites');
 }

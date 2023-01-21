@@ -12,6 +12,8 @@ import 'package:project/views/plan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
 
+import 'components.dart';
+
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
 
@@ -24,12 +26,15 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
-        // signout button 
-      appBar: AppBar(actions: [IconButton(
-        onPressed: signout,
-        
-       icon: Icon(Icons.logout))],),
+      // signout button
+      appBar: AppBar(
+        actions: [
+          IconButton(
+              onPressed: signout, icon: Icon(Icons.logout), color: Colors.white)
+        ],
+        backgroundColor: maincolor,
+        title: const Text("Home"),
+      ),
 
       body: SafeArea(
         child: ListView(
@@ -193,15 +198,10 @@ class _HomeScreen extends State<HomeScreen> {
   }
 
   void signout() {
-
-  FirebaseAuth.instance.signOut();
-  GoogleSignIn().signOut();
-
-
+    FirebaseAuth.instance.signOut();
+    GoogleSignIn().signOut();
   }
 }
-
-
 
 class MyImageView extends StatelessWidget {
   String imgPath;

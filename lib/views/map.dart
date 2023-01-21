@@ -231,14 +231,6 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     Set<Marker> markers = {};
 
     return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(Icons.arrow_back, color: Colors.white),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
-        backgroundColor: maincolor,
-        title: const Text("Map"),
-      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
