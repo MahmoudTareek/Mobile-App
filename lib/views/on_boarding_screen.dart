@@ -32,17 +32,15 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
                 TextButton(onPressed: (){
-                  print("Home Page");
+                  skip(context);
                 },
                  child: Text(
-                 
-                  "SKIP",
-                  style: TextStyle(
-                    fontSize: 18.0,
-                    fontWeight: FontWeight.bold,
-                    color: Colors.white,
+                    'Skip',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 20.0,
+                    ),
                   ),
-                ),
               ),
             ],
           ),
@@ -130,6 +128,11 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         ),
       ),
     );
+  }
+  
+ void skip(context) {
+    Navigator.pushAndRemoveUntil(context,
+        MaterialPageRoute(builder: (context) => login()), (route) => false);
   }
 
   Widget buildBoardingItem(BoardingModel model) => Column(
