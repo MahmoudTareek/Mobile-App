@@ -112,7 +112,9 @@ class _DetailsScreenState extends State<DetailsScreen> {
                         Padding(
                           padding: const EdgeInsets.only(bottom: 7, left: 10),
                           child: Text(
-                            widget.detailData['name'].toString(),
+                            widget.detailData['name']
+                                .toString()
+                                .substring(0, 17),
                             style: const TextStyle(
                                 fontSize: 28, fontFamily: 'Roboto Mono'),
                           ),
