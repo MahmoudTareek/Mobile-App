@@ -3,7 +3,11 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+
+import 'package:google_sign_in/google_sign_in.dart';
+
 import 'package:highlight_text/highlight_text.dart';
+
 import 'package:project/views/plan.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:speech_to_text/speech_to_text.dart' as stt;
@@ -20,10 +24,12 @@ class _HomeScreen extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // signout button
-      appBar: AppBar(
-        actions: [IconButton(onPressed: signout, icon: Icon(Icons.logout))],
-      ),
+
+        // signout button 
+      appBar: AppBar(actions: [IconButton(
+        onPressed: signout,
+        
+       icon: Icon(Icons.logout))],),
 
       body: SafeArea(
         child: ListView(
@@ -187,9 +193,15 @@ class _HomeScreen extends State<HomeScreen> {
   }
 
   void signout() {
-    FirebaseAuth.instance.signOut();
+
+  FirebaseAuth.instance.signOut();
+  GoogleSignIn().signOut();
+
+
   }
 }
+
+
 
 class MyImageView extends StatelessWidget {
   String imgPath;

@@ -9,10 +9,18 @@
       "client_info": {
         "mobilesdk_app_id": "1:651498546888:android:864a848e6240194a3a27fd",
         "android_client_info": {
-          "package_name": "hashim.gotour"
+          "package_name": "com.example.map"
         }
       },
       "oauth_client": [
+        {
+          "client_id": "651498546888-oocf05sr674mpbsolu9v65a2ef9gpom2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.map",
+            "certificate_hash": "e718bf23609745c423e5aa03036dc0edd66a7e1a"
+          }
+        },
         {
           "client_id": "651498546888-ke0o52cojqsj73a1gf3uh03n05bdra00.apps.googleusercontent.com",
           "client_type": 3
