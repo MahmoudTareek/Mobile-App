@@ -114,7 +114,7 @@ class _DetailsScreenState extends State<DetailsScreen> {
                           child: Text(
                             widget.detailData['name']
                                 .toString()
-                                .substring(0, 25),
+                                .substring(0, 22),
                             style: const TextStyle(
                                 fontSize: 28, fontFamily: 'Roboto Mono'),
                           ),
@@ -147,49 +147,49 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                 //               const MapScreen()),
                                 //     );
                                 //   },
-                                SizedBox(
+                                Container(
                                   height: 150,
                                   width: 340,
                                   // ignore: sort_child_properties_last
-                                  child: Row(
-                                    // ignore: prefer_const_literals_to_create_immutables
-                                    children: [
-                                      Padding(
-                                          padding: const EdgeInsets.only(
-                                              left: 10, bottom: 150, top: 10),
-                                          child: IconButton(
-                                              onPressed: () {
-                                                setState(() {
-                                                  // isFavorite = !isFavorite;
-                                                  if (isFavorite == true) {
-                                                    isFavorite = false;
-                                                  } else {
-                                                    isFavorite = true;
-                                                  }
-                                                });
-                                              },
-                                              icon: Icon(
-                                                isFavorite
-                                                    ? Icons.star
-                                                    : Icons.star_border,
-                                                size: 35,
-                                                color: Colors.red,
-                                              ))),
-                                    ],
+                                  child: Padding(
+                                    padding: const EdgeInsets.only(
+                                        left: 270, bottom: 90),
+                                    child: Row(
+                                      // ignore: prefer_const_literals_to_create_immutables
+                                      children: [
+                                        IconButton(
+                                            onPressed: () {
+                                              setState(() {
+                                                // isFavorite = !isFavorite;
+                                                if (isFavorite == true) {
+                                                  isFavorite = false;
+                                                } else {
+                                                  isFavorite = true;
+                                                }
+                                              });
+                                            },
+                                            icon: Icon(
+                                              isFavorite
+                                                  ? Icons.favorite
+                                                  : Icons.favorite_border,
+                                              size: 40,
+                                              color: Colors.red,
+                                            ))
+                                      ],
+                                    ),
                                   ),
-                                  // decoration: BoxDecoration(
-                                  //   borderRadius: BorderRadius.circular(20),
-                                  //   image: DecorationImage(
-                                  //     image: NetworkImage(widget
-                                  //                     .detailData['photos'][0]
-                                  //                 ['photo_reference'] !=
-                                  //             null
-                                  //         ? 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${widget.detailData['photos'][0]['photo_reference']}&key=$aPIkey'
-                                  //         : 'https://pic.onlinewebfonts.com/svg/img_546302.png'),
-                                  //     fit: BoxFit.cover,
-                                  //   ),
-                                  // ),
-                                  // ),
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(20),
+                                    image: DecorationImage(
+                                      image: NetworkImage(widget
+                                                      .detailData['photos'][0]
+                                                  ['photo_reference'] !=
+                                              null
+                                          ? 'https://maps.googleapis.com/maps/api/place/photo?maxwidth=400&photo_reference=${widget.detailData['photos'][0]['photo_reference']}&key=$aPIkey'
+                                          : 'https://pic.onlinewebfonts.com/svg/img_546302.png'),
+                                      fit: BoxFit.cover,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -205,10 +205,6 @@ class _DetailsScreenState extends State<DetailsScreen> {
                                     padding: const EdgeInsets.only(bottom: 8),
                                     child: Row(
                                       children: [
-                                        // const Padding(
-                                        //   padding: EdgeInsets.only(right: 4),
-                                        //
-                                        // ),
                                         RatingStars(
                                           value:
                                               widget.detailData['rating'] ?? 0,
