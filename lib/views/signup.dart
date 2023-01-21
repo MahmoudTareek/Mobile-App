@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:project/services/auth.dart';
 
 import 'package:project/services/google_auth.dart';
 import 'home_page.dart';
@@ -9,6 +10,8 @@ import '../model/signup_model.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import'package:project/services/google_auth.dart';
+
+import 'package:project/views/home_page.dart';
 
 class signup extends StatelessWidget{
   var usernameController = TextEditingController();
@@ -24,8 +27,9 @@ class signup extends StatelessWidget{
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
+        
         appBar: AppBar(
-          backgroundColor: Color(0xFF394a59),
+       backgroundColor: Color.fromRGBO(199, 197, 211, 1),
           title: Center(
             child: Text('Join'),
           ),
@@ -136,18 +140,18 @@ class signup extends StatelessWidget{
 
                 ),
                 SizedBox(height: 20,),
-                      Container(
+                      // Container(
 
-                      // insert text here
-                      child: Text(
-                        'Or continue with Google or Facebook',
-                        style: TextStyle(
-                          color: Colors.black,
-                          fontSize: 12,
-                        ),
+                      // // insert text here
+                      // child: Text(
+                      //   'Or continue with Google or Facebook',
+                      //   style: TextStyle(
+                      //     color: Colors.black,
+                      //     fontSize: 12,
+                      //   ),
                       
-                      ),
-                      ),
+                      // ),
+                      // ),
                       SizedBox(height:20 ),
                           Container(
                             width: 300,
@@ -155,7 +159,18 @@ class signup extends StatelessWidget{
                   // padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0),
                   child: ElevatedButton(
                     child: const Text('Sign up'),
-                    style: ElevatedButton.styleFrom(primary:Color(0xffc29592) ),
+                   
+                       style: ElevatedButton.styleFrom(
+                          backgroundColor: Color.fromRGBO(199, 197, 211, 1),
+                          textStyle:
+                              const TextStyle(fontWeight: FontWeight.bold),
+                          elevation: 10,
+                          side: const BorderSide(
+                              color: Color.fromARGB(255, 187, 185, 197),
+                              width: 2),
+                          shape: const StadiumBorder(),
+                        ),
+
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
                         FirebaseAuth.instance.createUserWithEmailAndPassword(
@@ -189,43 +204,47 @@ class signup extends StatelessWidget{
                   ),
                 SizedBox(height:20 ),
                        
-                  Container(
-                     width: 300,
-                  height: 50,
-                    child: ElevatedButton.icon(
-              onPressed: (){
+            //       Container(
+            //          width: 300,
+            //       height: 50,
+            //         child: ElevatedButton.icon(
+            //   onPressed: (){
             
-              }, 
-              icon: Icon(Icons.facebook), 
-              label: Text("Facebook"),
+            //   }, 
+            //   icon: Icon(Icons.facebook), 
+            //   label: Text("Facebook"),
              
             
-            ),
-                  )
+            // ),
+            //       )
             
-            ,
-            SizedBox(height:20 ),
-                    Container(
+            // ,
+            // SizedBox(height:20 ),
+            //         Container(
                       
-                            width: 300,
-                  height: 50,
+            //                 width: 300,
+            //       height: 50,
                   
-                  // padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0),
-                  child: ElevatedButton(
+            //       // padding: const EdgeInsets.fromLTRB( 0, 0, 0, 0),
+            //       child: ElevatedButton(
                     
-                    child: const Text('Google'),
-                    style: ElevatedButton.styleFrom(primary:Color(0x000000) ),
+            //         child: const Text('Google'),
+            //         style: ElevatedButton.styleFrom(primary:Color(0x000000) ),
                     
                     
                     
-                    onPressed: ()  {
-                  AuthService().signingoogle();
-
-
-                    },
-                  )
+            //         onPressed: ()  {
+            //           //print hello 
+                     
+            //         AuthService().signingoogle();
+                    
+            //         },
                   
-                  ),
+                    
+                    
+            //       )
+                  
+            //       ),
             
                 ],
               ),
