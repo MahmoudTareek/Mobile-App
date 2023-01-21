@@ -250,14 +250,31 @@ class _ViewProfileState extends State<ViewProfile> {
                       ),
                     },
                     // ignore: sort_child_properties_last
-                    child: const Text("Edit Recipients",
-                        style: TextStyle(color: Colors.black)),
-                    style: ElevatedButton.styleFrom(
-                      // ignore: deprecated_member_use
-                      primary: detailsBackground,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(18.0),
-                      ),
+                    child: FutureBuilder<SignUpModel?>(
+                      future: readInfo(),
+                      builder: (context, snapshot) {
+                        if (snapshot.hasData) {
+                          if (snapshot.data!.role == "admin") {
+                            return Text("Users",
+                                // ignore: dead_code
+                                style: TextStyle(color: Colors.black));
+                            // ignore: dead_code
+                            style:
+                            ElevatedButton.styleFrom(
+                              // ignore: deprecated_member_use
+                              primary: detailsBackground,
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(18.0),
+                              ),
+                            );
+                          }
+                          return Text("Admin",
+                              // ignore: dead_code
+                              style: TextStyle(color: Colors.black));
+                        } else {
+                          return const Text('Loading...');
+                        }
+                      },
                     ),
                   ),
                 ],
