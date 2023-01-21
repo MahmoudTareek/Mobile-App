@@ -4,6 +4,7 @@ import '../services/auth.dart';
 import 'components.dart';
 import '../model/on_boarding_model.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
+import 'login.dart';
 
 class OnBoardingScreen extends StatefulWidget
 {
