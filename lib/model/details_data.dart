@@ -1,8 +1,8 @@
 // import 'package:flutter/material.dart';
 
 class DetailsData {
-  int timeByCar = 25;
-  int timeWalking = 50;
-  String open = 'Closes soon';
-  String distance = "17 km";
+  int timeByCar = 21;
+  String timeWalking = "2 h";
+  int timeByBus = 30;
+  String distance = "14 km";
 }
