@@ -93,10 +93,10 @@ class _HomeScreen extends State<HomeScreen> {
                         ),
                       ],
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                     Padding(
-                      padding: EdgeInsets.all(10),
-                      child: Container(
+                      padding: const EdgeInsets.all(10),
+                      child: SizedBox(
                         height: 51,
                         // color: Colors.amber,
 
@@ -105,27 +105,41 @@ class _HomeScreen extends State<HomeScreen> {
                             Expanded(
                               child: TextField(
                                 decoration: InputDecoration(
-                                  prefixIcon: Icon(Icons.search),
+                                  prefixIcon: const Icon(Icons.search),
                                   hintText: "Search",
                                   border: OutlineInputBorder(
                                       borderRadius: BorderRadius.circular(15.0),
                                       borderSide: BorderSide.none),
-                                  fillColor: Color(0xffe6e6ec),
+                                  fillColor: const Color(0xffe6e6ec),
                                   filled: true,
                                 ),
                               ),
                             ),
-                            SizedBox(width: 15),
+                            const SizedBox(width: 15),
                             Container(
                               decoration: BoxDecoration(
-                                color: Color(0xffe6e6ec),
+                                color: const Color(0xffe6e6ec),
                                 borderRadius: BorderRadius.circular(9.0),
                               ),
-                              child: Icon(Icons.tune),
+                              child: const Icon(Icons.tune),
                             ),
                           ],
                         ),
                       ),
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    // Text(
+                    //   "YOU RECENTLY WATCHED",
+                    //   textAlign: TextAlign.center,
+                    //   style: TextStyle(
+                    //       fontSize: 16,
+                    //       color: Color(0xFFb89cbb),
+                    //       fontWeight: FontWeight.bold),
+                    // ),
+                    const SizedBox(
+                      height: 5,
                     ),
                     const SizedBox(
                       height: 20,
@@ -150,7 +164,7 @@ class _HomeScreen extends State<HomeScreen> {
                           autoPlayCurve: Curves.fastOutSlowIn,
                           enableInfiniteScroll: true,
                           autoPlayAnimationDuration:
-                              Duration(milliseconds: 800),
+                              const Duration(milliseconds: 800),
                         ),
                         items: [
                           MyImageView(
@@ -181,11 +195,10 @@ class MyImageView extends StatelessWidget {
   String imgPath;
   String title;
 
-  MyImageView(this.imgPath, this.title);
+  MyImageView(this.imgPath, this.title, {super.key});
 
   @override
   Widget build(BuildContext context) {
-    // TODO: implement build
     return GestureDetector(
       onTap: () {
         Navigator.push(
@@ -202,7 +215,7 @@ class MyImageView extends StatelessWidget {
       child: Stack(
         children: [
           Container(
-            margin: EdgeInsets.all(6.0),
+            margin: const EdgeInsets.all(6.0),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8.0),
               gradient: LinearGradient(
@@ -219,7 +232,7 @@ class MyImageView extends StatelessWidget {
           ),
           Positioned.fill(
             child: Container(
-              padding: EdgeInsets.all(10.0),
+              padding: const EdgeInsets.all(10.0),
               decoration: const BoxDecoration(
                 borderRadius: BorderRadius.all(Radius.circular(20)),
                 gradient: LinearGradient(
@@ -234,7 +247,7 @@ class MyImageView extends StatelessWidget {
                   stops: [0, 0, 0.6, 1],
                 ),
               ),
-              child: Container(
+              child: SizedBox(
                 width: MediaQuery.of(context).size.width,
                 child: Text(
                   title,
