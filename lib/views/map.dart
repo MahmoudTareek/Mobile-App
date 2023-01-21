@@ -16,6 +16,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:project/services/map_services.dart';
 import 'package:project/views/details_screen.dart';
 import '../model/auto_complete_model.dart';
+import 'components.dart';
 import 'search_places.dart';
 // import 'map_services.dart';
 
@@ -230,6 +231,14 @@ class _MapScreenState extends ConsumerState<MapScreen> {
     Set<Marker> markers = {};
 
     return Scaffold(
+      appBar: AppBar(
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () => Navigator.of(context).pop(),
+        ),
+        backgroundColor: maincolor,
+        title: const Text("Map"),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: [
