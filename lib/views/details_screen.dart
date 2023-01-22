@@ -17,7 +17,7 @@ class DetailsScreen extends StatefulWidget {
 
   final Map detailData;
   final Map detailAddress;
-  DetailsScreen(
+  const DetailsScreen(
       {Key? key, required this.detailData, required this.detailAddress})
       : super(key: key);
 

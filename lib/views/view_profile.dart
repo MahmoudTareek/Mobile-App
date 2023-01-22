@@ -19,8 +19,6 @@ class ViewProfile extends StatefulWidget {
 class _ViewProfileState extends State<ViewProfile> {
   @override
   Widget build(BuildContext context) {
-    final data = ViewProfileData();
-
     return Scaffold(
         body: SafeArea(
       child: ListView(
@@ -253,12 +251,13 @@ class _ViewProfileState extends State<ViewProfile> {
                       future: readInfo(),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
+                          // ignore: unrelated_type_equality_checks
                           if (snapshot.data! == "admin") {
+                            // ignore: prefer_const_constructors
                             return Text("Users",
                                 // ignore: dead_code
-                                style: TextStyle(color: Colors.black));
+                                style: const TextStyle(color: Colors.black));
                             // ignore: dead_code
-                            style:
                             ElevatedButton.styleFrom(
                               // ignore: deprecated_member_use
                               primary: detailsBackground,
@@ -267,7 +266,7 @@ class _ViewProfileState extends State<ViewProfile> {
                               ),
                             );
                           }
-                          return Text("Admin",
+                          return const Text("Admin",
                               // ignore: dead_code
                               style: TextStyle(color: Colors.black));
                         } else {
