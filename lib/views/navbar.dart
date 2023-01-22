@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:project/views/admin_screen.dart';
+import 'package:project/views/signout_screen.dart';
 import 'components.dart';
 import 'home_page.dart';
 import 'view_profile.dart';
@@ -17,19 +18,19 @@ class Navbar extends StatefulWidget {
 
 class _NavbarState extends State<Navbar> {
   int currentIndex = 1;
-  List<Widget> screens = [
+List<Widget> userScreens = [
     ViewProfile(),
     HomeScreen(),
     FavoritesScreen(),
-    AdminScreen(),
+    signout_screen(),
   ];
 
-  var user = getRole();
-  void changeIndex(int index) {
-    setState(() {
-      currentIndex = index;
-    });
-  }
+  List<Widget> adminScreens = [
+    ViewProfile(),
+    HomeScreen(),
+    AdminScreen(),
+    signout_screen(),
+  ];
 
   List<BottomNavigationBarItem> nonAdminNavBars = [
     BottomNavigationBarItem(
@@ -43,6 +44,10 @@ class _NavbarState extends State<Navbar> {
     BottomNavigationBarItem(
       icon: Icon(Icons.favorite),
       label: 'Favorite',
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.logout_outlined),
+      label: 'SignOut',
     ),
   ];
 
@@ -59,25 +64,47 @@ class _NavbarState extends State<Navbar> {
       icon: Icon(Icons.admin_panel_settings),
       label: 'Users',
     ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.logout_outlined),
+      label: 'SignOut',
+    ),
   ];
+
 
   //retrive user data from firebase and store it in a variable called user
   // ignore: unused_field
 
   @override
   Widget build(BuildContext context) {
-    print(user.toString());
-    return Scaffold(
-      body: Center(
-        child: screens.elementAt(currentIndex),
-      ),
-      bottomNavigationBar: BottomNavigationBar(
-        // ignore: prefer_const_literals_to_create_immutables
-        items: user.toString() == 'user' ? nonAdminNavBars : adminNavBars,
-        currentIndex: currentIndex,
-        selectedItemColor: maincolor,
-        onTap: changeIndex,
-      ),
-    );
+    if (userRole.toString() == 'user') {
+      return Scaffold(
+        body: Center(
+          child: userScreens.elementAt(currentIndex),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          // ignore: prefer_const_literals_to_create_immutables
+          items: nonAdminNavBars,
+          unselectedItemColor: Colors.black,
+          currentIndex: currentIndex,
+          selectedItemColor: maincolor,
+          onTap: changeIndex,
+        ),
+      );
+    } else {
+      print(userRole);
+      return Scaffold(
+        body: Center(
+          child: adminScreens.elementAt(currentIndex),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          // ignore: prefer_const_literals_to_create_immutables
+          items: adminNavBars,
+          unselectedItemColor: Colors.black,
+          currentIndex: currentIndex,
+          selectedItemColor: maincolor,
+          onTap: changeIndex,
+        ),
+      );
+    }
   }
 }
