@@ -3,11 +3,7 @@ import 'package:project/views/home_page.dart';
 import 'services/firebase_options.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:project/views/admin_screen.dart';
-import 'package:project/views/details_screen.dart';
-import 'package:project/views/home_page.dart';
 import 'views/on_boarding_screen.dart';
-import 'views/details_screen.dart';
 import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 

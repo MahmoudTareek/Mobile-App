@@ -17,8 +17,14 @@ class Navbar extends StatefulWidget {
 }
 
 class _NavbarState extends State<Navbar> {
+  void changeIndex(int index) {
+    setState(() {
+      currentIndex = index;
+    });
+  }
+
   int currentIndex = 1;
-List<Widget> userScreens = [
+  List<Widget> userScreens = [
     ViewProfile(),
     HomeScreen(),
     FavoritesScreen(),
@@ -70,7 +76,6 @@ List<Widget> userScreens = [
     ),
   ];
 
-
   //retrive user data from firebase and store it in a variable called user
   // ignore: unused_field
 
@@ -94,11 +99,11 @@ List<Widget> userScreens = [
       print(userRole);
       return Scaffold(
         body: Center(
-          child: adminScreens.elementAt(currentIndex),
+          child: userScreens.elementAt(currentIndex),
         ),
         bottomNavigationBar: BottomNavigationBar(
           // ignore: prefer_const_literals_to_create_immutables
-          items: adminNavBars,
+          items: nonAdminNavBars,
           unselectedItemColor: Colors.black,
           currentIndex: currentIndex,
           selectedItemColor: maincolor,

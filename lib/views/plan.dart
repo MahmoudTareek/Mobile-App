@@ -38,12 +38,12 @@ class PlanScreenState extends State<PlanScreen> {
     // double longitude = double.parse(_longitude);
 
     //Reem's IP
-    var url =
-        "http://192.168.0.4/mobile/Untitled-1.php?latitude=$_latitude&longitude=$_longitude";
+    // var url =
+    //     "http://192.168.0.4/mobile/Untitled-1.php?latitude=$_latitude&longitude=$_longitude";
 
     //Basma's IP
-    // var url =
-    //     "http://192.168.100.8/mobile/Untitled-1.php?latitude=$_latitude&longitude=$_longitude";
+    var url =
+        "http://192.168.8.131/mobile/Untitled-1.php?latitude=$_latitude&longitude=$_longitude";
 
     // var requestBody =
     //     json.encode({'latitude': _latitude, 'longitude': _longitude});

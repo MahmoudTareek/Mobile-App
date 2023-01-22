@@ -52,7 +52,7 @@ Future<void> changeRole(String uid) async {
   });
 }
 
-Future<SignUpModel?> getRole() async {
+Future<SignUpModel?> getUserRole() async {
   final user = FirebaseAuth.instance.currentUser;
   final doc = await FirebaseFirestore.instance
       .collection('users')
