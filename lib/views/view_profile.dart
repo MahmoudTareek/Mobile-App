@@ -245,8 +245,7 @@ class _ViewProfileState extends State<ViewProfile> {
                     onPressed: () => {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(
-                            builder: (context) => AdminScreen()),
+                        MaterialPageRoute(builder: (context) => AdminScreen()),
                       ),
                     },
                     // ignore: sort_child_properties_last
@@ -254,7 +253,7 @@ class _ViewProfileState extends State<ViewProfile> {
                       future: readInfo(),
                       builder: (context, snapshot) {
                         if (snapshot.hasData) {
-                          if (snapshot.data!.role == "admin") {
+                          if (snapshot.data! == "admin") {
                             return Text("Users",
                                 // ignore: dead_code
                                 style: TextStyle(color: Colors.black));

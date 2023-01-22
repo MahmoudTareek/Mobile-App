@@ -16,9 +16,9 @@ void createUser({
     email: email,
     password: password,
     uId: uid,
-    image:
-        'https://qph.cf2.quoracdn.net/main-qimg-2b21b9dd05c757fe30231fac65b504dd',
-    role: 'user',
+    // image:
+    //     'https://qph.cf2.quoracdn.net/main-qimg-2b21b9dd05c757fe30231fac65b504dd',
+    // role: 'user',
   );
   final json = model.toJson();
   await docUser.doc(uid).set(json);

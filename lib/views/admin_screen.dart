@@ -47,31 +47,40 @@ class _AdminScreenState extends State<AdminScreen> {
                         },
                       ),
                       IconButton(
-                        icon: const Icon(
-                          Icons.add_moderator,
-                          color: Colors.blue,
-                        ),
-                        onPressed: () async {
-                          await changeRole(user.uId);
-                          if (user.role == 'user') {
+                          icon: const Icon(
+                            Icons.add_moderator,
+                            color: Colors.blue,
+                          ),
+                          onPressed: () async {
+                            await changeRole(user.uId);
+                            // if (user.role == 'user') {
+                            //   final snackBar = SnackBar(
+                            //     content: Text(
+                            //       '${user.name} is admin now',
+                            //     ),
+                            //   );
+                            //   ScaffoldMessenger.of(context)
+                            //       .showSnackBar(snackBar);
+                            // } else {
+                            //     final snackBar = SnackBar(
+                            //       content: Text(
+                            //         '${user.name} is user now',
+                            //       ),
+                            //     );
+                            //     ScaffoldMessenger.of(context)
+                            //         .showSnackBar(snackBar);
+                            //   }
                             final snackBar = SnackBar(
                               content: Text(
-                                '${user.name} is admin now',
-                              ),
-                            );
-                            ScaffoldMessenger.of(context)
-                                .showSnackBar(snackBar);
-                          } else {
-                            final snackBar = SnackBar(
-                              content: Text(
-                                '${user.name} is user now',
+                                '${user.name} has changed their role',
                               ),
                             );
                             ScaffoldMessenger.of(context)
                                 .showSnackBar(snackBar);
                           }
-                        },
-                      ),
+
+                          // },
+                          ),
                     ],
                   ),
                 );
