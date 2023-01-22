@@ -5,6 +5,7 @@ Color maincolor = const Color(0xff3e536e);
 Color favoritesColor = Colors.red;
 Color detailsBackground = const Color(0xfff4f3f6);
 var userEmail = getUserEmail();
+var userRole = getUserRole();
 final aPIkey = 'AIzaSyDFoM-XyXDsa3PzoGkY2a94fyW5LLMA6LQ';
 
 Widget defaultButton({
